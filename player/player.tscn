@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://player/player.gd" id="1_3xeo1"]
 [ext_resource type="PackedScene" uid="uid://dxgsgn8qpav5j" path="res://player/player_animation.tscn" id="2_5torf"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5amu8"]
-radius = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohhtx"]
+size = Vector2(6, 6)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_3xeo1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-shape = SubResource("CircleShape2D_5amu8")
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_ohhtx")
 
 [node name="PlayerAnimation" parent="." instance=ExtResource("2_5torf")]

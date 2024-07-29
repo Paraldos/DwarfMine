@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dxgsgn8qpav5j"]
+[gd_scene load_steps=26 format=3 uid="uid://dxgsgn8qpav5j"]
 
 [ext_resource type="Texture2D" uid="uid://d4h34w7a0n81s" path="res://assets/Player-Sheet.png" id="1_ohx7s"]
 [ext_resource type="Script" path="res://player/player_animation.gd" id="2_q0an3"]
@@ -99,8 +99,25 @@ tracks/0/keys = {
 "values": [1, 5]
 }
 
+[sub_resource type="Animation" id="Animation_3xten"]
+resource_name = "Bow"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [9, 13]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_73ydo"]
 _data = {
+"Bow": SubResource("Animation_3xten"),
 "Idle": SubResource("Animation_pdlma"),
 "Jump_down": SubResource("Animation_0tob2"),
 "Jump_middle": SubResource("Animation_i1b5q"),
@@ -108,6 +125,9 @@ _data = {
 "RESET": SubResource("Animation_4g54e"),
 "Run": SubResource("Animation_m3wsf")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n03t0"]
+animation = &"Bow"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1uv24"]
 animation = &"Idle"
@@ -143,7 +163,15 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dqb8i"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tvvj1"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m24ik"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jrv1t"]
+states/Bow/node = SubResource("AnimationNodeAnimation_n03t0")
+states/Bow/position = Vector2(362, 216)
 states/Idle/node = SubResource("AnimationNodeAnimation_1uv24")
 states/Idle/position = Vector2(362, 97)
 states/Jump/node = SubResource("AnimationNodeBlendSpace1D_gks1y")
@@ -151,13 +179,13 @@ states/Jump/position = Vector2(362, -19)
 states/Run/node = SubResource("AnimationNodeAnimation_orqab")
 states/Run/position = Vector2(485, 97)
 states/Start/position = Vector2(253, 97)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_280ma"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_jt768"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_dqb8i")]
-graph_offset = Vector2(-106, -154)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_280ma"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_jt768"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_dqb8i"), "Idle", "Bow", SubResource("AnimationNodeStateMachineTransition_tvvj1"), "Bow", "Idle", SubResource("AnimationNodeStateMachineTransition_m24ik")]
+graph_offset = Vector2(-181, -41)
 
 [node name="PlayerAnimation" type="Sprite2D"]
 position = Vector2(0, -4)
 texture = ExtResource("1_ohx7s")
-hframes = 9
+hframes = 14
 script = ExtResource("2_q0an3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
