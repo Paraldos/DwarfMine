@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://dxgsgn8qpav5j"]
+[gd_scene load_steps=27 format=3 uid="uid://dxgsgn8qpav5j"]
 
 [ext_resource type="Texture2D" uid="uid://d4h34w7a0n81s" path="res://assets/Player-Sheet.png" id="1_ohx7s"]
 [ext_resource type="Script" path="res://player/player_animation.gd" id="2_q0an3"]
+[ext_resource type="PackedScene" uid="uid://psm30kroblww" path="res://player/attack_bow.tscn" id="3_mbg5h"]
 
 [sub_resource type="Animation" id="Animation_pdlma"]
 resource_name = "Idle"
@@ -101,7 +102,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_3xten"]
 resource_name = "Bow"
-length = 0.3
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -109,10 +110,24 @@ tracks/0/path = NodePath("PlayerAnimation:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [9, 13]
+"values": [9, 13, 13]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_emit_attack_signal"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_73ydo"]
@@ -200,3 +215,6 @@ root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_jrv1t")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Jump/blend_position = 0.00150156
+
+[node name="AttackBow" parent="." instance=ExtResource("3_mbg5h")]
+position = Vector2(0, 1)

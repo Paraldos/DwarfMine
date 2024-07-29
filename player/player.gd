@@ -14,7 +14,14 @@ func _physics_process(delta):
 	_attack()
 	_movement()
 	_animation()
+	_friction(delta)
 	move_and_slide()
+
+func _friction(delta):
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	if direction == 0:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func _attack():
 	if status != "Idle":
@@ -24,7 +31,6 @@ func _attack():
 
 func _jump(delta):
 	if not is_on_floor():
-		velocity.y += gravity * delta
 		status = "Jump"
 		if direction:
 			velocity.x = direction * SPEED
@@ -38,8 +44,6 @@ func _movement():
 	if direction:
 		velocity.x = direction * SPEED
 		status = "Run"
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func _animation():
 	player_animation._change_animation(status, velocity)
