@@ -6,7 +6,6 @@ extends Sprite2D
 var current_state = "idle"
 @onready var attack_bow = $AttackBow
 
-
 func _ready():
 	animation_tree.active = true
 
@@ -27,3 +26,4 @@ func _change_y_direction(y_dir):
 
 func _emit_attack_signal():
 	attack_bow._attack(flip_h)
+	current_state = "Idle"

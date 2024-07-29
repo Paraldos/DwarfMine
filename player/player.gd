@@ -26,7 +26,7 @@ func _friction(delta):
 func _attack():
 	if status != "Idle":
 		return
-	if Input.is_action_just_pressed("ui_attack"):
+	if Input.is_action_pressed("ui_attack"):
 		status = "Bow"
 
 func _jump(delta):
