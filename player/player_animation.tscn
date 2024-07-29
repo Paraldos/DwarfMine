@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dxgsgn8qpav5j"]
+[gd_scene load_steps=30 format=3 uid="uid://dxgsgn8qpav5j"]
 
 [ext_resource type="Texture2D" uid="uid://d4h34w7a0n81s" path="res://assets/Player-Sheet.png" id="1_ohx7s"]
 [ext_resource type="Script" path="res://player/player_animation.gd" id="2_q0an3"]
@@ -130,8 +130,25 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_b4emf"]
+resource_name = "Axe"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [14, 18]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_73ydo"]
 _data = {
+"Axe": SubResource("Animation_b4emf"),
 "Bow": SubResource("Animation_3xten"),
 "Idle": SubResource("Animation_pdlma"),
 "Jump_down": SubResource("Animation_0tob2"),
@@ -141,8 +158,17 @@ _data = {
 "Run": SubResource("Animation_m3wsf")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n03t0"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q86x1"]
+animation = &"Axe"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vc3ns"]
 animation = &"Bow"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_jj3jk"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_q86x1")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_vc3ns")
+blend_point_1/pos = 1.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1uv24"]
 animation = &"Idle"
@@ -178,15 +204,15 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dqb8i"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tvvj1"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m24ik"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7l5ml"]
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uvg6r"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jrv1t"]
-states/Bow/node = SubResource("AnimationNodeAnimation_n03t0")
-states/Bow/position = Vector2(362, 216)
+states/Attack/node = SubResource("AnimationNodeBlendSpace1D_jj3jk")
+states/Attack/position = Vector2(363, 197)
 states/Idle/node = SubResource("AnimationNodeAnimation_1uv24")
 states/Idle/position = Vector2(362, 97)
 states/Jump/node = SubResource("AnimationNodeBlendSpace1D_gks1y")
@@ -194,13 +220,13 @@ states/Jump/position = Vector2(362, -19)
 states/Run/node = SubResource("AnimationNodeAnimation_orqab")
 states/Run/position = Vector2(485, 97)
 states/Start/position = Vector2(253, 97)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_280ma"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_jt768"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_dqb8i"), "Idle", "Bow", SubResource("AnimationNodeStateMachineTransition_tvvj1"), "Bow", "Idle", SubResource("AnimationNodeStateMachineTransition_m24ik")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_280ma"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_jt768"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_dqb8i"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_7l5ml"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_uvg6r")]
 graph_offset = Vector2(-181, -41)
 
 [node name="PlayerAnimation" type="Sprite2D"]
 position = Vector2(0, -4)
 texture = ExtResource("1_ohx7s")
-hframes = 14
+hframes = 19
 script = ExtResource("2_q0an3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -214,6 +240,7 @@ active = false
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_jrv1t")
 anim_player = NodePath("../AnimationPlayer")
+parameters/Attack/blend_position = 0
 parameters/Jump/blend_position = 0.00150156
 
 [node name="AttackBow" parent="." instance=ExtResource("3_mbg5h")]
