@@ -4,40 +4,55 @@
 [ext_resource type="Script" path="res://player/player_animation.gd" id="2_q0an3"]
 [ext_resource type="PackedScene" uid="uid://psm30kroblww" path="res://player/attack_bow.tscn" id="3_mbg5h"]
 
+[sub_resource type="Animation" id="Animation_b4emf"]
+resource_name = "Axe"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [14, 18]
+}
+
+[sub_resource type="Animation" id="Animation_3xten"]
+resource_name = "Bow"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [9, 13, 13]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_emit_attack_signal"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_pdlma"]
 resource_name = "Idle"
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerAnimation:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_476xj"]
-resource_name = "Jump_up"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerAnimation:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-
-[sub_resource type="Animation" id="Animation_4g54e"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -83,6 +98,37 @@ tracks/0/keys = {
 "values": [7]
 }
 
+[sub_resource type="Animation" id="Animation_476xj"]
+resource_name = "Jump_up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_4g54e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_m3wsf"]
 resource_name = "Run"
 length = 0.8
@@ -100,52 +146,6 @@ tracks/0/keys = {
 "values": [1, 5]
 }
 
-[sub_resource type="Animation" id="Animation_3xten"]
-resource_name = "Bow"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerAnimation:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [9, 13, 13]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerAnimation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_emit_attack_signal"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_b4emf"]
-resource_name = "Axe"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerAnimation:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [14, 18]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_73ydo"]
 _data = {
 "Axe": SubResource("Animation_b4emf"),
@@ -158,36 +158,36 @@ _data = {
 "Run": SubResource("Animation_m3wsf")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q86x1"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k8p6y"]
 animation = &"Axe"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vc3ns"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o57g0"]
 animation = &"Bow"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_jj3jk"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_q86x1")
+blend_point_0/node = SubResource("AnimationNodeAnimation_k8p6y")
 blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_vc3ns")
+blend_point_1/node = SubResource("AnimationNodeAnimation_o57g0")
 blend_point_1/pos = 1.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1uv24"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k6p2h"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_520x0"]
 animation = &"Jump_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fp3o7"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2auo4"]
 animation = &"Jump_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t776f"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ola1t"]
 animation = &"Jump_middle"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_gks1y"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_k6p2h")
+blend_point_0/node = SubResource("AnimationNodeAnimation_520x0")
 blend_point_0/pos = 1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_fp3o7")
+blend_point_1/node = SubResource("AnimationNodeAnimation_2auo4")
 blend_point_1/pos = -1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_t776f")
+blend_point_2/node = SubResource("AnimationNodeAnimation_ola1t")
 blend_point_2/pos = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_orqab"]
@@ -227,6 +227,7 @@ graph_offset = Vector2(-181, -41)
 position = Vector2(0, -4)
 texture = ExtResource("1_ohx7s")
 hframes = 19
+frame = 14
 script = ExtResource("2_q0an3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

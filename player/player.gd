@@ -9,14 +9,15 @@ var current_weapon = "Axe"
 var state = "Idle"
 
 func _physics_process(delta):
-	direction = Input.get_axis("ui_left", "ui_right")
-	state = "Idle"
-	_jump(delta)
-	_attack()
-	_movement()
-	_animation()
-	_friction(delta)
-	move_and_slide()
+	pass
+	#direction = Input.get_axis("ui_left", "ui_right")
+	#state = "Idle"
+	#_jump(delta)
+	#_attack()
+	#_movement()
+	#_animation()
+	#_friction(delta)
+	#move_and_slide()
 
 func _jump(delta):
 	if Input.is_action_just_pressed("ui_jump") or not is_on_floor():
@@ -41,7 +42,7 @@ func _movement():
 func _friction(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	if state != "Run" and is_on_floor():
+	if  direction == 0:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func _animation():

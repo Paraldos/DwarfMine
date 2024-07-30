@@ -19,27 +19,24 @@ position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_ohhtx")
 
 [node name="PlayerAnimation" parent="." instance=ExtResource("2_5torf")]
-frame = 0
 
-[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_j7651")
-current_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("jump_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "parent")]
 script = ExtResource("4_obcsm")
 jump_state = NodePath("../Jump")
-animation_name = null
-move_speed = null
+parent = NodePath("../..")
 
-[node name="Move" type="Node" parent="PlayerStateMachine"]
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
 script = ExtResource("4_q518t")
+parent = NodePath("../..")
 
-[node name="Jump" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "parent")]
 script = ExtResource("5_trryc")
 idle_state = NodePath("../Idle")
-jump_force = null
-animation_name = null
-move_speed = null
+parent = NodePath("../..")
 
-[node name="Attack" type="Node" parent="PlayerStateMachine"]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
 script = ExtResource("6_g722h")
+parent = NodePath("../..")

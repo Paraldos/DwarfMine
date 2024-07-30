@@ -37,9 +37,6 @@ script = ExtResource("4_q518t")
 [node name="Jump" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("5_trryc")
 idle_state = NodePath("../Idle")
-jump_force = null
-animation_name = null
-move_speed = null
 
 [node name="Attack" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_g722h")
