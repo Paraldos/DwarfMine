@@ -18,7 +18,7 @@ func _physics_process(delta):
 	state_machine._state_physics_process(delta)
 	_set_direction(velocity)
 	move_and_slide()
-	if Input.is_action_just_pressed("ineventory"):
+	if Input.is_action_just_pressed("inventory"):
 		var new_inventory_screen = inventory.instantiate()
 		get_tree().current_scene.add_child(new_inventory_screen)
 

@@ -1,40 +1,54 @@
 extends Button
 
-var item = null
 var item_shadow = preload("res://Menus/Inventory/item_shadow.tscn")
-var slot = ["", ""]
+var slot = ["bag", 0]
+var item = null
 
-func _on_upadte(new_item = null, slot = ["", ""]):
-	print(slot)
-	item = new_item
-	if item != null:
-		icon = item.icon
+# ==================================================== ready
+func _ready():
+	Utils.inventory_update.connect(_on_inventory_update)
 
-func _input(event):
-	if Input.is_action_just_pressed("ui_cancel"):
-		disabled = false
-		Utils.selected_item = null
-		_remove_shadow()
-
+# ==================================================== focus
 func _on_focus_entered():
 	Utils.inventory_description_update.emit(item)
-	if Utils.selected_item:
+	if Utils.selected_slot:
 		_create_shadow()
 
 func _on_focus_exited():
 	_remove_shadow()
 
+# ==================================================== input
 func _on_pressed():
-	if item != null and Utils.selected_item == null:
-		Utils.selected_item = item
+	if !Utils.selected_slot and item:
+		Utils.selected_slot = slot
 		disabled = true
 		_create_shadow()
-	if Utils.selected_item:
-		pass
+	elif Utils.selected_slot:
+		Utils._switch_two_item_slots(slot, Utils.selected_slot)
+		Utils.selected_slot = null
+		Utils.inventory_update.emit()
+
+func _input(event):
+	if Input.is_action_just_pressed("ui_cancel"):
+		Utils.selected_slot = null
+		_on_inventory_update()
+
+# ==================================================== helper
+func _new_item(slot):
+	self.slot = slot
+	_on_inventory_update()
+
+func _on_inventory_update():
+	item = Utils._get_item(slot)
+	if item and item.icon:
+		icon = item.icon
+	else:
+		icon = null
+	disabled = false
+	_remove_shadow()
 
 func _create_shadow():
 	var shadow = item_shadow.instantiate()
-	shadow.item = Utils.selected_item
 	add_child(shadow)
 
 func _remove_shadow():

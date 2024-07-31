@@ -12,25 +12,20 @@ func _ready():
 	_init_inventory()
 
 func _init_inventory():
-	weapon._on_upadte(Utils.inventory.weapon, ["Weapon", 0])
-	armor._on_upadte(Utils.inventory.armor, ["Armor", 0])
-	trinket._on_upadte(Utils.inventory.trinket, ["Trinket", 0])
+	weapon._new_item(["weapon", 0])
+	armor._new_item(["armor", 0])
+	trinket._new_item(["trinket", 0])
 	for child in bag.get_children():
 		child.queue_free()
-	for i in Utils.max_inventory_size:
+	for i in Utils.inventory.bag.size():
 		var new_btn = inventory_button.instantiate()
-		new_btn._on_upadte(Utils.inventory.bag[i] if Utils.inventory.bag.size() > i else null, ["Bag", i])
+		new_btn._new_item(["bag", i])
 		bag.add_child(new_btn)
 		if i == 0:
 			new_btn.grab_focus()
 
-func _update_bag():
-	for i in Utils.max_inventory_size:
-		var btn = bag.get_child(i)
-		btn._on_upadte(Utils.inventory.bag[i] if Utils.inventory.bag.size() > i else null)
-
 func _physics_process(delta):
-	if Input.is_action_just_pressed("ineventory"):
+	if Input.is_action_just_pressed("inventory"):
 		queue_free()
 
 func _on_tree_exiting():
