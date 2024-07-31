@@ -3,7 +3,7 @@ extends State
 @export var idle_state: State
 @export var move_state: State
 @export var muzzle: Marker2D
-var arrow = preload("res://Projectiles/projectile.tscn")
+var arrow = preload("res://player/player_arrow.tscn")
 
 func _enter():
 	super._enter()

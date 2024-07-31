@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccw8gfat7o1kc"]
+[gd_scene load_steps=2 format=3 uid="uid://ccw8gfat7o1kc"]
 
 [ext_resource type="Script" path="res://Projectiles/projectile.gd" id="1_iac2r"]
-[ext_resource type="Texture2D" uid="uid://ds3xulx2ifdl6" path="res://assets/images/Arrow.png" id="2_jbksv"]
 
 [node name="Projectile" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_iac2r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_jbksv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.2, 0.2)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
