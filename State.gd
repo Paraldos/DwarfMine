@@ -1,16 +1,19 @@
 class_name State
 extends Node
 
-@export var animation_name: String
-@export var move_speed: float = 400
+@onready var state_machine = get_parent()
 var charackter : CharacterBody2D
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
+var next_sate: State = null
 
 func _enter() -> void:
-	charackter.PlayerAnimation.play(animation_name)
+	charackter._change_animation(name)
 
-func _exit() -> void:
+func exit() -> void:
 	pass
 
-func _process_frame(delta: float) -> State:
-	return null
+func input(event):
+	pass
+
+func _state_physics_process(delta):
+	pass

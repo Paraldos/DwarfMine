@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://kohth56j1tb8"]
+[gd_scene load_steps=10 format=3 uid="uid://kohth56j1tb8"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3xeo1"]
 [ext_resource type="PackedScene" uid="uid://dxgsgn8qpav5j" path="res://player/player_animation.tscn" id="2_5torf"]
 [ext_resource type="Script" path="res://player/StateMachine.gd" id="3_j7651"]
+[ext_resource type="Theme" uid="uid://cbu2rgcmbjxyq" path="res://Themes/Defaulttheme.tres" id="3_nhdyj"]
 [ext_resource type="Script" path="res://player/Idle.gd" id="4_obcsm"]
 [ext_resource type="Script" path="res://player/Move.gd" id="4_q518t"]
 [ext_resource type="Script" path="res://player/Jump.gd" id="5_trryc"]
-[ext_resource type="Script" path="res://player/Attack.gd" id="6_g722h"]
+[ext_resource type="Script" path="res://player/Axe.gd" id="7_jqu64"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ohhtx"]
 size = Vector2(6, 6)
@@ -19,27 +20,56 @@ position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_ohhtx")
 
 [node name="PlayerAnimation" parent="." instance=ExtResource("2_5torf")]
-frame = 0
 
-[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+[node name="StateLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -23.0
+offset_right = 70.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_nhdyj")
+text = "State: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "current_state")]
 script = ExtResource("3_j7651")
+starting_state = NodePath("Idle")
 current_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("jump_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "move_state", "axe_state")]
 script = ExtResource("4_obcsm")
 jump_state = NodePath("../Jump")
-animation_name = null
-move_speed = null
+move_state = NodePath("../Move")
+axe_state = NodePath("../Axe")
 
-[node name="Move" type="Node" parent="PlayerStateMachine"]
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "axe_state")]
 script = ExtResource("4_q518t")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+axe_state = NodePath("../Axe")
 
-[node name="Jump" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="CoyoteTimer" type="Timer" parent="StateMachine/Move"]
+unique_name_in_owner = true
+wait_time = 0.15
+one_shot = true
+
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "axe_state")]
 script = ExtResource("5_trryc")
 idle_state = NodePath("../Idle")
-jump_force = null
-animation_name = null
-move_speed = null
+move_state = NodePath("../Move")
+axe_state = NodePath("../Axe")
 
-[node name="Attack" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("6_g722h")
+[node name="Axe" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state")]
+script = ExtResource("7_jqu64")
+idle_state = NodePath("../Idle")
+move_state = NodePath("../Move")
+
+[connection signal="axe_animation_finished" from="PlayerAnimation" to="StateMachine/Axe" method="_on_player_animation_axe_animation_finished"]

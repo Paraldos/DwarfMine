@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dxgsgn8qpav5j"]
+[gd_scene load_steps=29 format=3 uid="uid://dxgsgn8qpav5j"]
 
 [ext_resource type="Texture2D" uid="uid://d4h34w7a0n81s" path="res://assets/Player-Sheet.png" id="1_ohx7s"]
 [ext_resource type="Script" path="res://player/player_animation.gd" id="2_q0an3"]
@@ -114,23 +114,8 @@ tracks/0/keys = {
 "values": [6]
 }
 
-[sub_resource type="Animation" id="Animation_4g54e"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerAnimation:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="Animation" id="Animation_m3wsf"]
-resource_name = "Run"
+resource_name = "Move"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -146,52 +131,74 @@ tracks/0/keys = {
 "values": [1, 5]
 }
 
+[sub_resource type="Animation" id="Animation_4g54e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6asr7"]
+resource_name = "Fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_73ydo"]
 _data = {
 "Axe": SubResource("Animation_b4emf"),
 "Bow": SubResource("Animation_3xten"),
+"Fall": SubResource("Animation_6asr7"),
 "Idle": SubResource("Animation_pdlma"),
 "Jump_down": SubResource("Animation_0tob2"),
 "Jump_middle": SubResource("Animation_i1b5q"),
 "Jump_up": SubResource("Animation_476xj"),
-"RESET": SubResource("Animation_4g54e"),
-"Run": SubResource("Animation_m3wsf")
+"Move": SubResource("Animation_m3wsf"),
+"RESET": SubResource("Animation_4g54e")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k8p6y"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5pu04"]
 animation = &"Axe"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o57g0"]
-animation = &"Bow"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_jj3jk"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_k8p6y")
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_o57g0")
-blend_point_1/pos = 1.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1uv24"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_520x0"]
-animation = &"Jump_down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2auo4"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w7cu3"]
 animation = &"Jump_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ola1t"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2tnjs"]
 animation = &"Jump_middle"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_gks1y"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_520x0")
-blend_point_0/pos = 1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_2auo4")
-blend_point_1/pos = -1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_ola1t")
-blend_point_2/pos = 0.0
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g8w8r"]
+animation = &"Jump_down"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_6y8hk"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_w7cu3")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_2tnjs")
+blend_point_1/pos = 0.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_g8w8r")
+blend_point_2/pos = 1.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_orqab"]
-animation = &"Run"
+animation = &"Move"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gjdss"]
 advance_mode = 2
@@ -200,34 +207,33 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qgsac"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jt768"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tq7t5"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dqb8i"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0e8tj"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7l5ml"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j0ff0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ylva"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uvg6r"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jrv1t"]
-states/Attack/node = SubResource("AnimationNodeBlendSpace1D_jj3jk")
-states/Attack/position = Vector2(363, 197)
+states/Axe/node = SubResource("AnimationNodeAnimation_5pu04")
+states/Axe/position = Vector2(362, 219)
 states/Idle/node = SubResource("AnimationNodeAnimation_1uv24")
 states/Idle/position = Vector2(362, 97)
-states/Jump/node = SubResource("AnimationNodeBlendSpace1D_gks1y")
-states/Jump/position = Vector2(362, -19)
-states/Run/node = SubResource("AnimationNodeAnimation_orqab")
-states/Run/position = Vector2(485, 97)
+states/Jump/node = SubResource("AnimationNodeBlendSpace1D_6y8hk")
+states/Jump/position = Vector2(362, 7)
+states/Move/node = SubResource("AnimationNodeAnimation_orqab")
+states/Move/position = Vector2(485, 97)
 states/Start/position = Vector2(253, 97)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_280ma"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_jt768"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_dqb8i"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_7l5ml"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_uvg6r")]
-graph_offset = Vector2(-181, -41)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_280ma"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_tq7t5"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_0e8tj"), "Idle", "Axe", SubResource("AnimationNodeStateMachineTransition_j0ff0"), "Axe", "Idle", SubResource("AnimationNodeStateMachineTransition_1ylva")]
+graph_offset = Vector2(-188, 36.8572)
 
 [node name="PlayerAnimation" type="Sprite2D"]
 position = Vector2(0, -4)
 texture = ExtResource("1_ohx7s")
 hframes = 19
-frame = 14
 script = ExtResource("2_q0an3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -241,8 +247,9 @@ active = false
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_jrv1t")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Attack/blend_position = 0
-parameters/Jump/blend_position = 0.00150156
+parameters/Jump/blend_position = 0
 
 [node name="AttackBow" parent="." instance=ExtResource("3_mbg5h")]
 position = Vector2(0, 1)
+
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

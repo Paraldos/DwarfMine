@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cbu2rgcmbjxyq"]
+
+[ext_resource type="FontFile" uid="uid://bf7q12syacanu" path="res://assets/fonts/PixelSimpel.otf" id="1_qbg4b"]
+
+[resource]
+default_font = ExtResource("1_qbg4b")
+default_font_size = 6

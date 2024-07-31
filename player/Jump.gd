@@ -2,21 +2,16 @@ extends State
 
 @export var idle_state: State
 @export var move_state: State
-@export var jump_force: float = 130.0
+@export var axe_state: State
 
-func _enter():
-	super._enter()
-	charackter.velocity.y = -jump_force
-
-func _physics_process(delta):
-	charackter.velocity.y += gravity * delta
-	var movement = Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right") * move_speed
-	if movement != 0:
-		charackter.player_animation.flip_h = movement < 0
-	charackter.velocity.x = movement
-	charackter.move_and_slide()
+func _state_physics_process(delta):
+	var direction = Input.get_axis("ui_left", "ui_right")
+	charackter.velocity.x = direction * charackter.SPEED
 	if charackter.is_on_floor():
-		if movement != 0:
-			return move_state
-		return idle_state
-	return null
+		if direction != 0:
+			state_machine._change_state(move_state)
+		else:
+			state_machine._change_state(idle_state)
+	if Input.is_action_just_pressed("attack"):
+		state_machine._change_state(axe_state)
+	charackter._gravity(delta)
