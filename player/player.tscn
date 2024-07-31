@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://kohth56j1tb8"]
+[gd_scene load_steps=40 format=3 uid="uid://kohth56j1tb8"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3xeo1"]
-[ext_resource type="PackedScene" uid="uid://dxgsgn8qpav5j" path="res://player/player_animation.tscn" id="2_5torf"]
+[ext_resource type="Texture2D" uid="uid://d4h34w7a0n81s" path="res://assets/images/Player-Sheet.png" id="2_reiaa"]
+[ext_resource type="Script" path="res://player/PlayerSprite.gd" id="3_0yq0i"]
 [ext_resource type="Script" path="res://player/StateMachine.gd" id="3_j7651"]
 [ext_resource type="Theme" uid="uid://cbu2rgcmbjxyq" path="res://Themes/Defaulttheme.tres" id="3_nhdyj"]
+[ext_resource type="Script" path="res://components/HitBox.gd" id="4_4b1hf"]
 [ext_resource type="Script" path="res://player/Idle.gd" id="4_obcsm"]
 [ext_resource type="Script" path="res://player/Move.gd" id="4_q518t"]
 [ext_resource type="Script" path="res://player/Jump.gd" id="5_trryc"]
@@ -13,6 +15,251 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ohhtx"]
 size = Vector2(6, 6)
 
+[sub_resource type="Animation" id="Animation_b4emf"]
+resource_name = "Axe"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [14, 18]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_3xten"]
+resource_name = "Bow"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [9, 13]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/Bow")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_spawn_arrow"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pdlma"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0tob2"]
+resource_name = "Jump_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_i1b5q"]
+resource_name = "Jump_middle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_476xj"]
+resource_name = "Jump_up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_m3wsf"]
+resource_name = "Move"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1, 5]
+}
+
+[sub_resource type="Animation" id="Animation_4g54e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_73ydo"]
+_data = {
+"Axe": SubResource("Animation_b4emf"),
+"Bow": SubResource("Animation_3xten"),
+"Idle": SubResource("Animation_pdlma"),
+"Jump_down": SubResource("Animation_0tob2"),
+"Jump_middle": SubResource("Animation_i1b5q"),
+"Jump_up": SubResource("Animation_476xj"),
+"Move": SubResource("Animation_m3wsf"),
+"RESET": SubResource("Animation_4g54e")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5pu04"]
+animation = &"Axe"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qjemn"]
+animation = &"Bow"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1uv24"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_owqlq"]
+animation = &"Jump_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4rso8"]
+animation = &"Jump_middle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6rpbv"]
+animation = &"Jump_down"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_6y8hk"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_owqlq")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_4rso8")
+blend_point_1/pos = 0.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_6rpbv")
+blend_point_2/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_orqab"]
+animation = &"Move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gjdss"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_280ma"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qgsac"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tq7t5"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0e8tj"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j0ff0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ylva"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n1c3y"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cgq3w"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iem07"]
+states/Axe/node = SubResource("AnimationNodeAnimation_5pu04")
+states/Axe/position = Vector2(253, 214)
+states/Bow/node = SubResource("AnimationNodeAnimation_qjemn")
+states/Bow/position = Vector2(485, 214)
+states/Idle/node = SubResource("AnimationNodeAnimation_1uv24")
+states/Idle/position = Vector2(362, 97)
+states/Jump/node = SubResource("AnimationNodeBlendSpace1D_6y8hk")
+states/Jump/position = Vector2(362, 7)
+states/Move/node = SubResource("AnimationNodeAnimation_orqab")
+states/Move/position = Vector2(485, 97)
+states/Start/position = Vector2(253, 97)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_280ma"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_tq7t5"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_0e8tj"), "Idle", "Axe", SubResource("AnimationNodeStateMachineTransition_j0ff0"), "Axe", "Idle", SubResource("AnimationNodeStateMachineTransition_1ylva"), "Bow", "Idle", SubResource("AnimationNodeStateMachineTransition_n1c3y"), "Idle", "Bow", SubResource("AnimationNodeStateMachineTransition_cgq3w")]
+graph_offset = Vector2(-172, -67.1428)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_3xeo1")
 
@@ -20,14 +267,46 @@ script = ExtResource("1_3xeo1")
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_ohhtx")
 
-[node name="MuzzleBow" type="Marker2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+rotation = 3.14159
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_4b1hf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PackedVector2Array(-4, 3.49691e-07, -4, 7, 6.11959e-07, 7, 1.1365e-06, 13, -3, 13, -9, 9, -12, 2, -12, 1.04907e-06)
+disabled = true
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -4)
+texture = ExtResource("2_reiaa")
+hframes = 19
+script = ExtResource("3_0yq0i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSprite"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_73ydo")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="PlayerSprite"]
+active = false
+root_node = NodePath("%PlayerSprite/..")
+tree_root = SubResource("AnimationNodeStateMachine_iem07")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Jump/blend_position = 0
+
+[node name="Muzzle" type="Node2D" parent="."]
+
+[node name="Bow" type="Marker2D" parent="Muzzle"]
 unique_name_in_owner = true
 position = Vector2(8, -3)
 
-[node name="PlayerAnimation" parent="." instance=ExtResource("2_5torf")]
-
 [node name="StateLabel" type="Label" parent="."]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -74,8 +353,10 @@ script = ExtResource("7_jqu64")
 script = ExtResource("9_4c03b")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
-muzzle = NodePath("../../MuzzleBow")
+muzzle = NodePath("../../Muzzle/Bow")
 
-[connection signal="attack_animation_finished" from="PlayerAnimation" to="StateMachine/Axe" method="_on_player_animation_attack_animation_finished"]
-[connection signal="attack_animation_finished" from="PlayerAnimation" to="StateMachine/Bow" method="_on_player_animation_attack_animation_finished"]
-[connection signal="spawn_arrow" from="PlayerAnimation" to="StateMachine/Bow" method="_on_player_animation_spawn_arrow"]
+[connection signal="attack_animation_finished" from="PlayerSprite" to="StateMachine/Axe" method="_on_player_sprite_attack_animation_finished"]
+[connection signal="attack_animation_finished" from="PlayerSprite" to="StateMachine/Bow" method="_on_player_sprite_attack_animation_finished"]
+[connection signal="animation_finished" from="PlayerSprite/AnimationTree" to="PlayerSprite" method="_on_animation_tree_animation_finished"]
+[connection signal="animation_player_changed" from="PlayerSprite/AnimationTree" to="StateMachine/Axe" method="_on_animation_tree_animation_player_changed"]
+[connection signal="animation_player_changed" from="PlayerSprite/AnimationTree" to="StateMachine/Bow" method="_on_animation_tree_animation_player_changed"]

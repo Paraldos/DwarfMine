@@ -22,6 +22,11 @@ func init(charackter):
 func _state_physics_process(delta):
 	state_label.text = "State: " + current_state.name
 	current_state._state_physics_process(delta)
+	if Input.is_action_just_pressed("change_set"):
+		if current_weapon == "axe":
+			current_weapon = "bow"
+		elif current_weapon == "bow":
+			current_weapon = "axe"
 
 func _change_state(new_state: String):
 	if current_state:

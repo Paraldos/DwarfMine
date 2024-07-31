@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0g5gg16a8dj3"]
+
+[ext_resource type="Script" path="res://Enemies/enemy_template.gd" id="1_4oifq"]
+[ext_resource type="Script" path="res://components/HurtBox.gd" id="2_1olib"]
+
+[node name="EnemyTemplate" type="Node2D"]
+script = ExtResource("1_4oifq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("2_1olib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+
+[connection signal="hit" from="HurtBox" to="." method="_on_hurt_box_hit"]

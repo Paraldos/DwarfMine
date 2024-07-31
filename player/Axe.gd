@@ -11,7 +11,7 @@ func _state_physics_process(delta):
 		charackter.velocity = Vector2.ZERO
 	charackter._gravity(delta)
 
-func _on_player_animation_attack_animation_finished():
+func _on_player_sprite_attack_animation_finished():
 	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
 		state_machine._change_state("move")
 	else:
