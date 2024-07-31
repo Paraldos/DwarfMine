@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq50n3fkf8nol"
-path="res://.godot/imported/Axe.png-b112ab8b4d6429467a48e2276c07da68.ctex"
+uid="uid://b34qfqqx83qfq"
+path="res://.godot/imported/Tileset_Cave_Lava.png-a4ee52c35c844aa7bd28fa4043f51b88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Axe.png"
-dest_files=["res://.godot/imported/Axe.png-b112ab8b4d6429467a48e2276c07da68.ctex"]
+source_file="res://assets/images/Tileset_Cave_Lava.png"
+dest_files=["res://.godot/imported/Tileset_Cave_Lava.png-a4ee52c35c844aa7bd28fa4043f51b88.ctex"]
 
 [params]
 

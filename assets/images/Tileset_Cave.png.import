@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brkvgvvw3q404"
-path="res://.godot/imported/Tileset_Cave.png-590332424cfc6c0d5bd32126931bc195.ctex"
+path="res://.godot/imported/Tileset_Cave.png-871884662c77126f8ee3f2aa454ff8b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tileset_Cave.png"
-dest_files=["res://.godot/imported/Tileset_Cave.png-590332424cfc6c0d5bd32126931bc195.ctex"]
+source_file="res://assets/images/Tileset_Cave.png"
+dest_files=["res://.godot/imported/Tileset_Cave.png-871884662c77126f8ee3f2aa454ff8b9.ctex"]
 
 [params]
 

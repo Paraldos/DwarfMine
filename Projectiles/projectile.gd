@@ -1,10 +1,10 @@
 extends Area2D
 
-var speed = 150
+var velocity = 150
 @onready var sprite_2d = $Sprite2D
 
 func _ready():
-	sprite_2d.flip_h = speed <= 0
+	sprite_2d.flip_h = velocity <= 0
 
 func _process(delta):
-	position.x += speed * delta
+	position.x += velocity * delta

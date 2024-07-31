@@ -1,6 +1,7 @@
 extends Sprite2D
 
-signal axe_animation_finished
+signal attack_animation_finished
+signal spawn_arrow
 @onready var animation_player = $AnimationPlayer
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree["parameters/playback"]
@@ -18,5 +19,5 @@ func _change_direction(velocity):
 	animation_tree.set("parameters/Jump/blend_position", velocity.y / 50)
 
 func _on_animation_tree_animation_finished(anim_name):
-	if anim_name == "Axe":
-		axe_animation_finished.emit()
+	if anim_name == "Axe" or anim_name == "Bow":
+		attack_animation_finished.emit()

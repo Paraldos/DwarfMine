@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds3xulx2ifdl6"
-path="res://.godot/imported/Arrow.png-ecbf03ed1ef06a0646e91f5f515bdd3d.ctex"
+uid="uid://dq50n3fkf8nol"
+path="res://.godot/imported/Axe.png-7d45e3c39daa493dcaeb3a568a0e56cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Arrow.png"
-dest_files=["res://.godot/imported/Arrow.png-ecbf03ed1ef06a0646e91f5f515bdd3d.ctex"]
+source_file="res://assets/images/Axe.png"
+dest_files=["res://.godot/imported/Axe.png-7d45e3c39daa493dcaeb3a568a0e56cc.ctex"]
 
 [params]
 

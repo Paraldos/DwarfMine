@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://kohth56j1tb8"]
+[gd_scene load_steps=11 format=3 uid="uid://kohth56j1tb8"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3xeo1"]
 [ext_resource type="PackedScene" uid="uid://dxgsgn8qpav5j" path="res://player/player_animation.tscn" id="2_5torf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://player/Move.gd" id="4_q518t"]
 [ext_resource type="Script" path="res://player/Jump.gd" id="5_trryc"]
 [ext_resource type="Script" path="res://player/Axe.gd" id="7_jqu64"]
+[ext_resource type="Script" path="res://player/Bow.gd" id="9_4c03b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ohhtx"]
 size = Vector2(6, 6)
@@ -18,6 +19,10 @@ script = ExtResource("1_3xeo1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_ohhtx")
+
+[node name="MuzzleBow" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(8, -3)
 
 [node name="PlayerAnimation" parent="." instance=ExtResource("2_5torf")]
 
@@ -39,37 +44,38 @@ text = "State: "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "current_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "idle_state", "move_state", "jump_state", "axe_state", "bow_state")]
 script = ExtResource("3_j7651")
-starting_state = NodePath("Idle")
 current_state = NodePath("Idle")
+idle_state = NodePath("Idle")
+move_state = NodePath("Move")
+jump_state = NodePath("Jump")
+axe_state = NodePath("Axe")
+bow_state = NodePath("Bow")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "move_state", "axe_state")]
+[node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_obcsm")
-jump_state = NodePath("../Jump")
-move_state = NodePath("../Move")
-axe_state = NodePath("../Axe")
 
-[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "axe_state")]
+[node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource("4_q518t")
-idle_state = NodePath("../Idle")
-jump_state = NodePath("../Jump")
-axe_state = NodePath("../Axe")
 
 [node name="CoyoteTimer" type="Timer" parent="StateMachine/Move"]
 unique_name_in_owner = true
 wait_time = 0.15
 one_shot = true
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "axe_state")]
+[node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("5_trryc")
-idle_state = NodePath("../Idle")
-move_state = NodePath("../Move")
-axe_state = NodePath("../Axe")
 
-[node name="Axe" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state")]
+[node name="Axe" type="Node" parent="StateMachine"]
 script = ExtResource("7_jqu64")
+
+[node name="Bow" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "muzzle")]
+script = ExtResource("9_4c03b")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
+muzzle = NodePath("../../MuzzleBow")
 
-[connection signal="axe_animation_finished" from="PlayerAnimation" to="StateMachine/Axe" method="_on_player_animation_axe_animation_finished"]
+[connection signal="attack_animation_finished" from="PlayerAnimation" to="StateMachine/Axe" method="_on_player_animation_attack_animation_finished"]
+[connection signal="attack_animation_finished" from="PlayerAnimation" to="StateMachine/Bow" method="_on_player_animation_attack_animation_finished"]
+[connection signal="spawn_arrow" from="PlayerAnimation" to="StateMachine/Bow" method="_on_player_animation_spawn_arrow"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=29 format=3 uid="uid://dxgsgn8qpav5j"]
+[gd_scene load_steps=32 format=3 uid="uid://dxgsgn8qpav5j"]
 
-[ext_resource type="Texture2D" uid="uid://d4h34w7a0n81s" path="res://assets/Player-Sheet.png" id="1_ohx7s"]
+[ext_resource type="Texture2D" uid="uid://d4h34w7a0n81s" path="res://assets/images/Player-Sheet.png" id="1_3exm3"]
 [ext_resource type="Script" path="res://player/player_animation.gd" id="2_q0an3"]
 [ext_resource type="PackedScene" uid="uid://psm30kroblww" path="res://player/attack_bow.tscn" id="3_mbg5h"]
 
@@ -45,8 +45,8 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.3),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"_emit_attack_signal"
+"args": [&"spawn_arrow"],
+"method": &"emit_signal"
 }]
 }
 
@@ -177,6 +177,9 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5pu04"]
 animation = &"Axe"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qjemn"]
+animation = &"Bow"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1uv24"]
 animation = &"Idle"
 
@@ -217,9 +220,17 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n1c3y"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cgq3w"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jrv1t"]
 states/Axe/node = SubResource("AnimationNodeAnimation_5pu04")
-states/Axe/position = Vector2(362, 219)
+states/Axe/position = Vector2(253, 214)
+states/Bow/node = SubResource("AnimationNodeAnimation_qjemn")
+states/Bow/position = Vector2(485, 214)
 states/Idle/node = SubResource("AnimationNodeAnimation_1uv24")
 states/Idle/position = Vector2(362, 97)
 states/Jump/node = SubResource("AnimationNodeBlendSpace1D_6y8hk")
@@ -227,12 +238,12 @@ states/Jump/position = Vector2(362, 7)
 states/Move/node = SubResource("AnimationNodeAnimation_orqab")
 states/Move/position = Vector2(485, 97)
 states/Start/position = Vector2(253, 97)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_280ma"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_tq7t5"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_0e8tj"), "Idle", "Axe", SubResource("AnimationNodeStateMachineTransition_j0ff0"), "Axe", "Idle", SubResource("AnimationNodeStateMachineTransition_1ylva")]
-graph_offset = Vector2(-188, 36.8572)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_280ma"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_tq7t5"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_0e8tj"), "Idle", "Axe", SubResource("AnimationNodeStateMachineTransition_j0ff0"), "Axe", "Idle", SubResource("AnimationNodeStateMachineTransition_1ylva"), "Bow", "Idle", SubResource("AnimationNodeStateMachineTransition_n1c3y"), "Idle", "Bow", SubResource("AnimationNodeStateMachineTransition_cgq3w")]
+graph_offset = Vector2(-172, -67.1428)
 
 [node name="PlayerAnimation" type="Sprite2D"]
 position = Vector2(0, -4)
-texture = ExtResource("1_ohx7s")
+texture = ExtResource("1_3exm3")
 hframes = 19
 script = ExtResource("2_q0an3")
 
