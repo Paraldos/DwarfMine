@@ -1,0 +1,174 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5eqnjf7pib6b"]
+
+[ext_resource type="Script" path="res://Menus/Inventory/inventory.gd" id="1_wsqdv"]
+[ext_resource type="Theme" uid="uid://cbu2rgcmbjxyq" path="res://Themes/Defaulttheme.tres" id="2_0bxmu"]
+[ext_resource type="PackedScene" uid="uid://crk7n0nq1a561" path="res://Menus/Inventory/inventory_button.tscn" id="3_nccbv"]
+[ext_resource type="Script" path="res://Menus/Inventory/DescriptionContainer.gd" id="4_pptnb"]
+
+[node name="Menu_Inventory" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_wsqdv")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_0bxmu")
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Equipped" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Equipped"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Equipped/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Weapon"
+
+[node name="Weapon" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Equipped/HBoxContainer" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Equipped"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Equipped/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Armor"
+
+[node name="Armor" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Equipped/HBoxContainer2" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Equipped"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Equipped/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Trinket"
+
+[node name="Trinket" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Equipped/HBoxContainer3" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="DescriptionContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer2/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("4_pptnb")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Bag" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
+columns = 10
+
+[node name="InventoryButton5" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton6" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton7" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton8" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton9" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton10" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton11" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton12" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton13" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton14" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton15" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton16" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton17" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton18" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton19" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton20" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton21" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton22" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton23" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[node name="InventoryButton24" parent="Control/MarginContainer/VBoxContainer/PanelContainer/Bag" instance=ExtResource("3_nccbv")]
+layout_mode = 2
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

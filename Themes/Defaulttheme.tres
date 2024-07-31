@@ -12,5 +12,5 @@ texture_margin_bottom = 4.0
 
 [resource]
 default_font = ExtResource("1_qbg4b")
-default_font_size = 6
+default_font_size = 4
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_fp2kb")

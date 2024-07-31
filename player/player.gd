@@ -6,11 +6,12 @@ extends CharacterBody2D
 @onready var hitbox = %Hitbox
 @onready var player_sprite = %PlayerSprite
 @onready var muzzle = $Muzzle
-var inventory = preload("res://player/Inventory/inventory.tscn")
+var inventory = preload("res://Menus/Inventory/inventory.tscn")
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_left = false
 
 func _ready():
+	Utils.player = self
 	state_machine.init(self)
 
 func _physics_process(delta):
