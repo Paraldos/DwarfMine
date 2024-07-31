@@ -14,20 +14,8 @@ var selected_slot = null
 func _ready():
 	for i in 20:
 		inventory.bag.append(null)
-	inventory.weapon = _create_axe()
-	inventory.bag[1] = _create_bow()
-
-func _add_item():
-	inventory_update.emit()
-
-func _remove_item():
-	inventory_update.emit()
-
-func _create_axe():
-	return Item.new("Axe", preload("res://assets/images/Axe.png"), "Weapon")
-
-func _create_bow():
-	return Item.new("Bow", preload("res://assets/images/Bow.png"), "Weapon")
+	inventory.weapon = LootGenerator._create_axe()
+	inventory.bag[1] = LootGenerator._create_bow()
 
 func _switch_two_item_slots(slot1, slot2):
 	var item1 = _get_item(slot1)
@@ -47,6 +35,5 @@ func _get_item(slot : Array):
 	else:
 		return inventory[ slot[0] ][ slot[1] ];
 
-func _get_selected_slot():
+func _get_selected_item():
 	return _get_item(selected_slot)
-
