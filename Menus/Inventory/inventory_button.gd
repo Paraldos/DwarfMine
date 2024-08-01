@@ -7,13 +7,20 @@ var item = null
 var valid = true
 
 # ==================================================== ready
+func _new_item(slot):
+	self.slot = slot
+	_on_reset_button()
+
 func _ready():
 	Utils.inventory_update.connect(_on_reset_button)
 	_change_color()
 
-func _new_item(slot):
-	self.slot = slot
-	_on_reset_button()
+func _physics_process(delta):
+	if Input.is_action_just_pressed("switch_items") && has_focus() && item:
+		if ["weapon", "armor", "trinket"].has(item.type.to_lower()):
+			Utils._switch_two_item_slots(slot, [item.type.to_lower(), 0])
+			Utils.inventory_update.emit()
+			Utils.inventory_description_update.emit(item)
 
 # ==================================================== focus
 func _on_focus_entered():
@@ -50,7 +57,6 @@ func _input(event):
 # ==================================================== helper
 func _on_cancel():
 	Utils.selected_slot = null
-	_on_reset_button()
 	Utils.inventory_update.emit()
 
 func _on_reset_button():
