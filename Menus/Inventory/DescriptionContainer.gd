@@ -19,11 +19,20 @@ func _add_title(item):
 
 func _add_dmg(item):
 	if item != null and item.type == "Weapon":
+		var current_weapon = Utils._get_current_weapon()
+		var selected_weapon = Utils._get_selected_item()
 		var newDmg = Label.new()
 		newDmg.text = "Damage: %s (%s)" % [item.dmg, item.dmg_type]
 		add_child(newDmg)
-		if !Utils.selected_slot && item != Utils._get_current_weapon():
-			var differenz = item.dmg - Utils._get_current_weapon().dmg
+		if !selected_weapon && item != current_weapon:
+			var differenz = item.dmg - current_weapon.dmg
+			newDmg.text += " (%s)" % [differenz]
+			if differenz > 0:
+				newDmg.modulate = Color("#00ff00")
+			elif differenz < 0:
+				newDmg.modulate = Color("#ff0000")
+		if selected_weapon && item != selected_weapon:
+			var differenz = selected_weapon.dmg - item.dmg
 			newDmg.text += " (%s)" % [differenz]
 			if differenz > 0:
 				newDmg.modulate = Color("#00ff00")
@@ -32,6 +41,8 @@ func _add_dmg(item):
 
 func _add_armor(item):
 	if item != null and item.type == "Armor":
+		var current_armor = Utils._get_current_armor()
+		var selected_armor = Utils._get_selected_item()
 		# label
 		var newArmor = Label.new()
 		newArmor.text = "Armor:"
@@ -49,8 +60,15 @@ func _add_armor(item):
 			newArmorType.text = "%s %s" % [item.armor[armor], armor]
 			grid.add_child(newArmorType)
 			# compare
-			if !Utils.selected_slot && item != Utils._get_item(["armor"]):
-				var differenz = item.armor[armor] - Utils._get_item(["armor"]).armor[armor]
+			if !selected_armor && item != current_armor:
+				var differenz = item.armor[armor] - current_armor.armor[armor]
+				newArmorType.text += " (%s)" % [differenz]
+				if differenz > 0:
+					newArmorType.modulate = Color("#00ff00")
+				elif differenz < 0:
+					newArmorType.modulate = Color("#ff0000")
+			if selected_armor && item != selected_armor:
+				var differenz = selected_armor.armor[armor] - item.armor[armor]
 				newArmorType.text += " (%s)" % [differenz]
 				if differenz > 0:
 					newArmorType.modulate = Color("#00ff00")

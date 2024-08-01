@@ -19,8 +19,8 @@ func _init_inventory():
 		child.queue_free()
 	for i in Utils.inventory.bag.size():
 		var new_btn = inventory_button.instantiate()
-		new_btn._new_item(["bag", i])
 		bag.add_child(new_btn)
+		new_btn._new_item(["bag", i])
 		if i == 0:
 			new_btn.grab_focus()
 

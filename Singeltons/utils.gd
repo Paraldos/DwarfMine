@@ -41,6 +41,9 @@ func _get_player_dmg():
 func _get_current_weapon():
 	return inventory.weapon
 
+func _get_current_armor():
+	return inventory.armor
+
 func _put_item_into_slot(slot, item):
 	if slot[0] != "bag":
 		inventory[ slot[0] ] = item;
@@ -54,4 +57,7 @@ func _get_item(slot : Array):
 		return inventory[ slot[0] ][ slot[1] ];
 
 func _get_selected_item():
-	return _get_item(selected_slot)
+	if selected_slot == null:
+		return null
+	else:
+		return _get_item(selected_slot)
