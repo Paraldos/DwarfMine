@@ -4,21 +4,23 @@ signal inventory_update
 signal inventory_description_update
 var player = null
 var inventory = {
-	weapon = null,
+	weapon_1 = null,
+	weapon_2 = null,
 	armor = null,
 	trinket = null,
 	bag = []
 }
 var selected_slot = null
+var active_set = 1
 
 func _ready():
-	for i in 20:
+	for i in 12:
 		inventory.bag.append(null)
-	inventory.weapon = LootGenerator._create_axe()
+	inventory.weapon_1 = LootGenerator._create_axe()
+	inventory.weapon_2 = LootGenerator._create_bow()
 	inventory.armor = LootGenerator._create_armor()
 	inventory.bag[0] = LootGenerator._create_ring()
-	inventory.bag[1] = LootGenerator._create_bow()
-	inventory.bag[2] = LootGenerator._create_amulet()
+	inventory.bag[1] = LootGenerator._create_amulet()
 	inventory.bag[5] = LootGenerator._create_armor()
 
 func _switch_two_item_slots(slot1, slot2):
@@ -29,9 +31,9 @@ func _switch_two_item_slots(slot1, slot2):
 
 func _get_player_dmg():
 	var dmg = {value = 0, type = "Bashing"}
-	if inventory.weapon != null:
-		dmg.type = inventory.weapon.dmg_type
-		dmg.value += inventory.weapon.dmg
+	if _get_current_weapon() != null:
+		dmg.type = _get_current_weapon().dmg_type
+		dmg.value += _get_current_weapon().dmg
 	if inventory.armor != null:
 		dmg.value += inventory.armor.dmg
 	if inventory.trinket != null:
@@ -39,7 +41,10 @@ func _get_player_dmg():
 	return dmg
 
 func _get_current_weapon():
-	return inventory.weapon
+	if active_set == 1:
+		return inventory.weapon_1
+	else:
+		return inventory.weapon_2
 
 func _get_current_armor():
 	return inventory.armor

@@ -1,9 +1,10 @@
 extends CanvasLayer
 
-@onready var weapon = $Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Equipped/HBoxContainer/Weapon
-@onready var armor = $Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Equipped/HBoxContainer2/Armor
-@onready var trinket = $Control/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Equipped/HBoxContainer3/Trinket
-@onready var bag = %Bag
+@onready var weapon_1 = %Weapon1
+@onready var weapon_2 = %Weapon2
+@onready var armor = %Armor
+@onready var trinket = %Trinket
+@onready var bag_container = %BagContainer
 @onready var description_container = %DescriptionContainer
 var inventory_button = preload("res://Menus/Inventory/inventory_button.tscn")
 
@@ -12,15 +13,16 @@ func _ready():
 	_init_inventory()
 
 func _init_inventory():
-	weapon._new_item(["weapon", 0])
-	armor._new_item(["armor", 0])
-	trinket._new_item(["trinket", 0])
-	for child in bag.get_children():
+	weapon_1._init_inventory_btn(["weapon_1", 0])
+	weapon_2._init_inventory_btn(["weapon_2", 0])
+	armor._init_inventory_btn(["armor", 0])
+	trinket._init_inventory_btn(["trinket", 0])
+	for child in bag_container.get_children():
 		child.queue_free()
 	for i in Utils.inventory.bag.size():
 		var new_btn = inventory_button.instantiate()
-		bag.add_child(new_btn)
-		new_btn._new_item(["bag", i])
+		bag_container.add_child(new_btn)
+		new_btn._init_inventory_btn(["bag", i])
 		if i == 0:
 			new_btn.grab_focus()
 
