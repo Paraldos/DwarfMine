@@ -24,11 +24,11 @@ func _physics_process(delta):
 		if item.type == "Trinket":
 			Utils._switch_two_item_slots(slot, ["trinket", 0])
 		Utils.inventory_update.emit()
-		Utils.inventory_description_update.emit(item)
+		Utils.inventory_description_update.emit(item, _exchange_is_valid())
 
 # ==================================================== focus
 func _on_focus_entered():
-	Utils.inventory_description_update.emit(item)
+	Utils.inventory_description_update.emit(item, _exchange_is_valid())
 	if Utils.selected_slot:
 		inventory_shadow._on()
 	_change_color()
@@ -77,7 +77,7 @@ func _exchange_is_valid():
 func _on_cancel():
 	Utils.selected_slot = null
 	Utils.inventory_update.emit()
-	Utils.inventory_description_update.emit(item)
+	Utils.inventory_description_update.emit(item, _exchange_is_valid())
 
 func _on_reset_button():
 	disabled = false

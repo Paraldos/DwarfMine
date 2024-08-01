@@ -5,7 +5,6 @@ extends CanvasLayer
 @onready var armor = %Armor
 @onready var trinket = %Trinket
 @onready var bag_container = %BagContainer
-@onready var description_container = %DescriptionContainer
 var inventory_button = preload("res://Menus/Inventory/inventory_button.tscn")
 
 func _ready():

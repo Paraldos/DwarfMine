@@ -1,12 +1,14 @@
 extends VBoxContainer
 
 var item = null
+var is_valid = false
 
 func _ready():
 	Utils.inventory_description_update.connect(_on_inventory_description_update)
 
-func _on_inventory_description_update(item : Item):
+func _on_inventory_description_update(item : Item, is_valid):
 	self.item = item
+	self.is_valid = is_valid
 	for child in get_children():
 		child.queue_free()
 	_add_title()
@@ -29,6 +31,7 @@ func _add_dmg():
 		add_child(newLabel)
 
 func _add_dmg_differenz(newLabel):
+	if !is_valid: return
 	var current_weapon = Utils._get_current_weapon()
 	var selected_weapon = Utils._get_selected_item()
 	if !selected_weapon && current_weapon && item != current_weapon:
@@ -40,6 +43,7 @@ func _add_dmg_differenz(newLabel):
 			newLabel.modulate = Color("#ff0000")
 
 func _add_selected_dmg_differenz(newLabel):
+	if !is_valid: return
 	var current_weapon = Utils._get_current_weapon()
 	var selected_weapon = Utils._get_selected_item()
 	if selected_weapon && item != selected_weapon:
@@ -81,6 +85,7 @@ func _add_armor_label(grid):
 		_add_selected_armor_differenz(armor_type, newLabel)
 
 func _add_armor_diffenrenz(armor_type, newLabel):
+	if !is_valid: return
 	var current_armor = Utils._get_current_armor()
 	var selected_armor = Utils._get_selected_item()
 	if !selected_armor && current_armor && item != current_armor:
@@ -92,6 +97,7 @@ func _add_armor_diffenrenz(armor_type, newLabel):
 			newLabel.modulate = Color("#ff0000")
 
 func _add_selected_armor_differenz(armor_type, newLabel):
+	if !is_valid: return
 	var selected_armor = Utils._get_selected_item()
 	if selected_armor && item != selected_armor:
 		var differenz = selected_armor.armor[armor_type] - item.armor[armor_type]

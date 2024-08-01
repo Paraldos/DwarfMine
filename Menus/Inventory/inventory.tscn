@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Menus/Inventory/inventory.gd" id="1_wsqdv"]
 [ext_resource type="Theme" uid="uid://cbu2rgcmbjxyq" path="res://Themes/Defaulttheme.tres" id="2_0bxmu"]
 [ext_resource type="PackedScene" uid="uid://crk7n0nq1a561" path="res://Menus/Inventory/inventory_button.tscn" id="3_nccbv"]
-[ext_resource type="Script" path="res://Menus/Inventory/DescriptionContainer.gd" id="4_pptnb"]
+[ext_resource type="Script" path="res://Menus/Inventory/inventory_description.gd" id="4_2is0d"]
 
 [node name="Menu_Inventory" type="CanvasLayer"]
 process_mode = 3
@@ -137,13 +137,13 @@ size_flags_vertical = 3
 [node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/Description"]
 layout_mode = 2
 
-[node name="DescriptionContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/Description/ScrollContainer"]
+[node name="InventoryDescription" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer/Description/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 2
-script = ExtResource("4_pptnb")
+script = ExtResource("4_2is0d")
 
 [node name="Bag" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
