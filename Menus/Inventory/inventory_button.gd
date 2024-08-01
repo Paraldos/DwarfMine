@@ -1,7 +1,7 @@
 extends Button
 
+@onready var inventory_shadow = $InventoryShadow
 var texture_rect : TextureRect
-var item_shadow = preload("res://Menus/Inventory/item_shadow.tscn")
 var slot = ["bag", 0]
 var item = null
 var valid = true
@@ -26,7 +26,7 @@ func _physics_process(delta):
 func _on_focus_entered():
 	Utils.inventory_description_update.emit(item)
 	if Utils.selected_slot:
-		_create_shadow()
+		inventory_shadow._on()
 		if ["Weapon", "Armor", "Trinket"].has(name) and name != Utils._get_selected_item().type:
 			valid = false
 			_change_color()
@@ -34,7 +34,7 @@ func _on_focus_entered():
 func _on_focus_exited():
 	valid = true
 	_change_color()
-	_remove_shadow()
+	inventory_shadow._off()
 
 # ==================================================== input
 func _on_pressed():
@@ -43,7 +43,7 @@ func _on_pressed():
 	if !Utils.selected_slot and item:
 		Utils.selected_slot = slot
 		disabled = true
-		_create_shadow()
+		inventory_shadow._on()
 	elif Utils.selected_slot == slot:
 		_on_cancel()
 	elif Utils.selected_slot:
@@ -65,7 +65,7 @@ func _on_reset_button():
 	item = Utils._get_item(slot)
 	_set_icon()
 	_change_color()
-	_remove_shadow()
+	inventory_shadow._off()
 
 func _change_color(color = null):
 	if color:
@@ -83,12 +83,3 @@ func _set_icon():
 		texture_rect.texture = item.icon
 	else :
 		texture_rect.texture = null
-
-func _create_shadow():
-	var shadow = item_shadow.instantiate()
-	add_child(shadow)
-
-func _remove_shadow():
-	for child in get_children():
-		if child.name == "ItemShadow":
-			child.queue_free()

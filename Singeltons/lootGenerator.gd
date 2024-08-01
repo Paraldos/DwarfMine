@@ -1,35 +1,35 @@
 extends Node
 
-func _create_axe(randomize = true):
+func _create_axe(rand = true):
 	var item = Item.new("Axe", preload("res://assets/images/Axe.png"), "Weapon")
 	item._set_dmg(10, 'Slashing')
-	if randomize:
-		item._randomize()
+	if rand:
+		item._rand()
 	return item
 
-func _create_bow(randomize = true):
+func _create_bow(rand = true):
 	var item = Item.new("Bow", preload("res://assets/images/Bow.png"), "Weapon")
 	item._set_dmg(5, "Piercing")
-	if randomize:
-		item._randomize()
+	if rand:
+		item._rand()
 	return item
 
-func _create_ring(randomize = true):
+func _create_ring(rand = true):
 	var item = Item.new("Ring", preload("res://assets/images/Ring.png"), "Trinket")
-	if randomize:
-		item._randomize()
+	if rand:
+		item._rand()
 	return item
 
-func _create_amulet(randomize = true):
+func _create_amulet(rand = true):
 	var item = Item.new("Amulet", preload("res://assets/images/Amulet.png"), "Trinket")
-	if randomize:
-		item._randomize()
+	if rand:
+		item._rand()
 	return item
 
 
-func _create_armor(randomize = true):
+func _create_armor(rand = true):
 	var item = Item.new("Armor", preload("res://assets/images/Armor.png"), "Armor")
 	item._set_armour(5, 5, 5, 0, 0, 0)
-	if randomize:
-		item._randomize()
+	if rand:
+		item._rand()
 	return item

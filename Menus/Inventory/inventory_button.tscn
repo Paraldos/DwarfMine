@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://crk7n0nq1a561"]
+[gd_scene load_steps=4 format=3 uid="uid://crk7n0nq1a561"]
 
 [ext_resource type="Theme" uid="uid://bevcrymup4ms1" path="res://Themes/InventorySlot.tres" id="1_46a21"]
 [ext_resource type="Script" path="res://Menus/Inventory/inventory_button.gd" id="3_idipx"]
+[ext_resource type="PackedScene" uid="uid://cgrs05frki6na" path="res://Menus/Inventory/inventory_shadow.tscn" id="3_v7b76"]
 
 [node name="InventoryButton" type="Button"]
 custom_minimum_size = Vector2(10, 10)
@@ -15,7 +16,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 stretch_mode = 3
+
+[node name="InventoryShadow" parent="." instance=ExtResource("3_v7b76")]
+layout_mode = 1
+mouse_filter = 2
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

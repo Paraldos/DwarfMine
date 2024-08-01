@@ -50,7 +50,7 @@ func _get_item_color():
 	else:
 		return Color("#ffee58")
 
-func _randomize():
+func _rand():
 	var quality_rng = rng.randi_range(0, 100)
 	if quality_rng < 70:
 		title = "Normal  " + title
