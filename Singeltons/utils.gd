@@ -2,6 +2,7 @@ extends Node
 
 signal inventory_update
 signal inventory_description_update
+signal switch_set
 var player = null
 var inventory = {
 	weapon_1 = null,
@@ -11,7 +12,7 @@ var inventory = {
 	bag = []
 }
 var selected_slot = null
-var active_set = 1
+var active_set = true
 
 func _ready():
 	for i in 12:
@@ -28,6 +29,7 @@ func _switch_two_item_slots(slot1, slot2):
 	var item2 = _get_item(slot2)
 	_put_item_into_slot(slot1, item2)
 	_put_item_into_slot(slot2, item1)
+	switch_set.emit()
 
 func _get_player_dmg():
 	var dmg = {value = 0, type = "Bashing"}
@@ -41,7 +43,7 @@ func _get_player_dmg():
 	return dmg
 
 func _get_current_weapon():
-	if active_set == 1:
+	if Utils.active_set:
 		return inventory.weapon_1
 	else:
 		return inventory.weapon_2
@@ -66,3 +68,7 @@ func _get_selected_item():
 		return null
 	else:
 		return _get_item(selected_slot)
+
+func _switch_set():
+	active_set = !active_set
+	switch_set.emit()

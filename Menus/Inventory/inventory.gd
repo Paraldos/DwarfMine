@@ -5,11 +5,21 @@ extends CanvasLayer
 @onready var armor = %Armor
 @onready var trinket = %Trinket
 @onready var bag_container = %BagContainer
+@onready var label_set_1 = %LabelSet1
+@onready var label_set_2 = %LabelSet2
 var inventory_button = preload("res://Menus/Inventory/inventory_button.tscn")
 
 func _ready():
 	get_tree().paused = true
 	_init_inventory()
+	_update_set_label()
+	Utils.switch_set.connect(_update_set_label)
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed("inventory"):
+		queue_free()
+	if Input.is_action_just_pressed("switch_set"):
+		Utils._switch_set()
 
 func _init_inventory():
 	weapon_1._init_inventory_btn(["weapon_1", 0])
@@ -25,9 +35,9 @@ func _init_inventory():
 		if i == 0:
 			new_btn.grab_focus()
 
-func _physics_process(delta):
-	if Input.is_action_just_pressed("inventory"):
-		queue_free()
-
 func _on_tree_exiting():
 	get_tree().paused = false
+
+func _update_set_label():
+	label_set_1.modulate = Color('White') if Utils.active_set else Color("ffffff64")
+	label_set_2.modulate = Color('ffffff64') if Utils.active_set else Color("White")

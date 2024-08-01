@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bl03yhkd368jy"]
+[gd_scene load_steps=8 format=3 uid="uid://bl03yhkd368jy"]
 
 [ext_resource type="PackedScene" uid="uid://bq528jtxyk2wr" path="res://World/Tilemap/tile_map.tscn" id="1_qx6gc"]
 [ext_resource type="PackedScene" uid="uid://kohth56j1tb8" path="res://player/player.tscn" id="2_fjm2y"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bxrjbaukelt0x" path="res://World/Scatter/plant.tscn" id="4_4otdw"]
 [ext_resource type="PackedScene" uid="uid://ygaku67xubmh" path="res://World/Scatter/mushroom.tscn" id="5_qj2xq"]
 [ext_resource type="PackedScene" uid="uid://jd76tfnv4mfi" path="res://World/Scatter/hanging_plant.tscn" id="6_ccong"]
+[ext_resource type="PackedScene" uid="uid://bgdh7qleifsav" path="res://ui/ui.tscn" id="7_rrsha"]
 
 [node name="Mine" type="Node2D"]
 
@@ -63,3 +64,5 @@ position = Vector2(20, 72)
 
 [node name="Plant3" parent="Front" instance=ExtResource("4_4otdw")]
 position = Vector2(100, 56)
+
+[node name="UI" parent="." instance=ExtResource("7_rrsha")]

@@ -21,6 +21,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("inventory"):
 		var new_inventory_screen = inventory.instantiate()
 		get_tree().current_scene.add_child(new_inventory_screen)
+	if Input.is_action_just_pressed("switch_set"):
+		Utils._switch_set()
 
 func _set_direction(velocity):
 	if velocity.x != 0:

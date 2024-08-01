@@ -6,18 +6,15 @@ var slot = ["bag", 0]
 var item = null
 
 # ==================================================== ready
-func _init_inventory_btn(new_slot):
-	slot = new_slot
-	_on_reset_button()
-
 func _ready():
 	Utils.inventory_update.connect(_on_reset_button)
+	Utils.switch_set.connect(_on_reset_button)
 	_change_color()
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("switch_items") && has_focus() && item:
 		if item.type == "Weapon":
-			var weapon_slot = ["weapon_1", 0] if Utils.active_set == 1 else ["weapon_2", 0]
+			var weapon_slot = ["weapon_1", 0] if Utils.active_set else ["weapon_2", 0]
 			Utils._switch_two_item_slots(slot, weapon_slot)
 		if item.type == "Armor":
 			Utils._switch_two_item_slots(slot, ["armor", 0])
@@ -56,6 +53,10 @@ func _input(event):
 		_on_cancel()
 
 # ==================================================== helper
+func _init_inventory_btn(new_slot):
+	slot = new_slot
+	_on_reset_button()
+
 func _exchange_is_valid():
 	if !has_focus():
 		return true
