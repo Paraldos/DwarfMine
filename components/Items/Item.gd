@@ -35,12 +35,12 @@ func _set_dmg(dmg, dmg_type):
 	self.dmg_type = dmg_type
 
 func _set_armour(piercing, slashing, bashing, fire, ice, lightning):
-	armor.Piercing = piercing
-	armor.Slashing = slashing
-	armor.Bashing = bashing
-	armor.Fire = fire
-	armor.Ice = ice
-	armor.Lightning = lightning
+	armor.Piercing = piercing + rng.randi_range(0, 2)
+	armor.Slashing = slashing + rng.randi_range(0, 2)
+	armor.Bashing = bashing + rng.randi_range(0, 2)
+	armor.Fire = fire + rng.randi_range(0, 2)
+	armor.Ice = ice + rng.randi_range(0, 2)
+	armor.Lightning = lightning + rng.randi_range(0, 2)
 
 func _get_item_color():
 	if item_quality == ItemQuality.NORMAL:

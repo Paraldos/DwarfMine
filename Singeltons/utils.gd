@@ -11,9 +11,6 @@ var inventory = {
 }
 var selected_slot = null
 
-func _get_current_weapon():
-	return inventory.weapon
-
 func _ready():
 	for i in 20:
 		inventory.bag.append(null)
@@ -22,6 +19,7 @@ func _ready():
 	inventory.bag[0] = LootGenerator._create_ring()
 	inventory.bag[1] = LootGenerator._create_bow()
 	inventory.bag[2] = LootGenerator._create_amulet()
+	inventory.bag[5] = LootGenerator._create_armor()
 
 func _switch_two_item_slots(slot1, slot2):
 	var item1 = _get_item(slot1)
@@ -39,6 +37,9 @@ func _get_player_dmg():
 	if inventory.trinket != null:
 		dmg.value += inventory.trinket.dmg
 	return dmg
+
+func _get_current_weapon():
+	return inventory.weapon
 
 func _put_item_into_slot(slot, item):
 	if slot[0] != "bag":

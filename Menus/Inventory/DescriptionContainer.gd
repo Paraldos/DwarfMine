@@ -22,6 +22,13 @@ func _add_dmg(item):
 		var newDmg = Label.new()
 		newDmg.text = "Damage: %s (%s)" % [item.dmg, item.dmg_type]
 		add_child(newDmg)
+		if !Utils.selected_slot && item != Utils._get_current_weapon():
+			var differenz = item.dmg - Utils._get_current_weapon().dmg
+			newDmg.text += " (%s)" % [differenz]
+			if differenz > 0:
+				newDmg.modulate = Color("#00ff00")
+			elif differenz < 0:
+				newDmg.modulate = Color("#ff0000")
 
 func _add_armor(item):
 	if item != null and item.type == "Armor":
@@ -41,3 +48,11 @@ func _add_armor(item):
 			var newArmorType = Label.new()
 			newArmorType.text = "%s %s" % [item.armor[armor], armor]
 			grid.add_child(newArmorType)
+			# compare
+			if !Utils.selected_slot && item != Utils._get_item(["armor"]):
+				var differenz = item.armor[armor] - Utils._get_item(["armor"]).armor[armor]
+				newArmorType.text += " (%s)" % [differenz]
+				if differenz > 0:
+					newArmorType.modulate = Color("#00ff00")
+				elif differenz < 0:
+					newArmorType.modulate = Color("#ff0000")
