@@ -18,8 +18,10 @@ func _ready():
 	for i in 20:
 		inventory.bag.append(null)
 	inventory.weapon = LootGenerator._create_axe()
+	inventory.armor = LootGenerator._create_armor()
 	inventory.bag[0] = LootGenerator._create_ring()
 	inventory.bag[1] = LootGenerator._create_bow()
+	inventory.bag[2] = LootGenerator._create_amulet()
 
 func _switch_two_item_slots(slot1, slot2):
 	var item1 = _get_item(slot1)

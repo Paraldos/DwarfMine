@@ -33,9 +33,9 @@ func _change_state(new_state: String):
 		"jump":
 			current_state = jump_state
 		"attack":
-			match Utils._get_current_weapon().title:
-				"Axe":
-					current_state = axe_state
-				"Bow":
-					current_state = bow_state
+			var weapon_title = Utils._get_current_weapon().title
+			if "Axe" in weapon_title:
+				current_state = axe_state
+			elif "Bow" in weapon_title:
+				current_state = bow_state
 	current_state._enter()

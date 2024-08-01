@@ -19,3 +19,17 @@ func _create_ring(randomize = true):
 	if randomize:
 		item._randomize()
 	return item
+
+func _create_amulet(randomize = true):
+	var item = Item.new("Amulet", preload("res://assets/images/Amulet.png"), "Trinket")
+	if randomize:
+		item._randomize()
+	return item
+
+
+func _create_armor(randomize = true):
+	var item = Item.new("Armor", preload("res://assets/images/Armor.png"), "Armor")
+	item._set_armour(5, 5, 5, 0, 0, 0)
+	if randomize:
+		item._randomize()
+	return item

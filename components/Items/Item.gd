@@ -14,7 +14,15 @@ var dmg : int
 var dmg_type : String
 var amount : int
 var max_amount : int
-var item_quality : int
+var item_quality = ItemQuality.NORMAL
+var armor = {
+	Piercing = 0,
+	Slashing = 0,
+	Bashing = 0,
+	Fire = 0,
+	Ice = 0,
+	Lightning = 0
+}
 
 func _init(Title, Icon, Type = ""):
 	rng.randomize()
@@ -23,8 +31,16 @@ func _init(Title, Icon, Type = ""):
 	type = Type
 
 func _set_dmg(dmg, dmg_type):
-	self.dmg = dmg
+	self.dmg = dmg + rng.randi_range(-2, 2)
 	self.dmg_type = dmg_type
+
+func _set_armour(piercing, slashing, bashing, fire, ice, lightning):
+	armor.Piercing = piercing
+	armor.Slashing = slashing
+	armor.Bashing = bashing
+	armor.Fire = fire
+	armor.Ice = ice
+	armor.Lightning = lightning
 
 func _get_item_color():
 	if item_quality == ItemQuality.NORMAL:
@@ -36,9 +52,12 @@ func _get_item_color():
 
 func _randomize():
 	var quality_rng = rng.randi_range(0, 100)
-	if quality_rng < 50:
+	if quality_rng < 70:
+		title = "Normal  " + title
 		item_quality = ItemQuality.NORMAL
-	elif quality_rng < 80:
+	elif quality_rng < 90:
+		title = "Rare  " + title
 		item_quality = ItemQuality.RARE
 	else:
+		title = "Magic  " + title
 		item_quality = ItemQuality.MAGIC
