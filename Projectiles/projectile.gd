@@ -6,6 +6,7 @@ var velocity = 150
 
 func _ready():
 	sprite_2d.flip_h = velocity <= 0
+	dmg = Utils._get_player_dmg()
 
 func _process(delta):
 	position.x += velocity * delta

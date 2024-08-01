@@ -347,8 +347,9 @@ one_shot = true
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("5_trryc")
 
-[node name="Axe" type="Node" parent="StateMachine"]
+[node name="Axe" type="Node" parent="StateMachine" node_paths=PackedStringArray("hitbox")]
 script = ExtResource("7_jqu64")
+hitbox = NodePath("../../Hitbox")
 
 [node name="Bow" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "muzzle")]
 script = ExtResource("9_4c03b")

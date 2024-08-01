@@ -10,7 +10,6 @@ class_name StateMachine
 @export var bow_state: State
 @onready var state_label = %StateLabel
 var states = []
-var current_weapon = "axe"
 
 func init(charackter):
 	for child in get_children():
@@ -22,11 +21,6 @@ func init(charackter):
 func _state_physics_process(delta):
 	state_label.text = "State: " + current_state.name
 	current_state._state_physics_process(delta)
-	if Input.is_action_just_pressed("change_set"):
-		if current_weapon == "axe":
-			current_weapon = "bow"
-		elif current_weapon == "bow":
-			current_weapon = "axe"
 
 func _change_state(new_state: String):
 	if current_state:
@@ -39,9 +33,9 @@ func _change_state(new_state: String):
 		"jump":
 			current_state = jump_state
 		"attack":
-			match current_weapon:
-				"axe":
+			match Utils._get_current_weapon().title:
+				"Axe":
 					current_state = axe_state
-				"bow":
+				"Bow":
 					current_state = bow_state
 	current_state._enter()
