@@ -7,9 +7,16 @@ func _create_axe(rand = true):
 		item._rand()
 	return item
 
+func _create_hammer(rand = true):
+	var item = Item.new("Hammer", preload("res://assets/images/Hammer.png"), "Weapon")
+	item._set_dmg(10, 'Bashing')
+	if rand:
+		item._rand()
+	return item
+
 func _create_bow(rand = true):
 	var item = Item.new("Bow", preload("res://assets/images/Bow.png"), "Weapon")
-	item._set_dmg(5, "Piercing")
+	item._set_dmg(8, "Piercing")
 	if rand:
 		item._rand()
 	return item

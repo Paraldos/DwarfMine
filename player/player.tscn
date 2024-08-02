@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://kohth56j1tb8"]
+[gd_scene load_steps=45 format=3 uid="uid://kohth56j1tb8"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3xeo1"]
 [ext_resource type="Texture2D" uid="uid://d4h34w7a0n81s" path="res://assets/images/Player-Sheet.png" id="2_reiaa"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://player/States/Jump.gd" id="5_trryc"]
 [ext_resource type="Script" path="res://player/States/Axe.gd" id="7_jqu64"]
 [ext_resource type="Script" path="res://player/States/Bow.gd" id="9_4c03b"]
+[ext_resource type="Script" path="res://player/Hammer.gd" id="12_8mr0d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ohhtx"]
 size = Vector2(6, 6)
@@ -28,7 +29,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [14, 18]
+"values": [15, 19]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -41,6 +42,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerSprite")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_attack_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_3xten"]
@@ -56,7 +71,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [9, 13]
+"values": [10, 13]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -70,6 +85,62 @@ tracks/1/keys = {
 "values": [{
 "args": [],
 "method": &"_spawn_arrow"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerSprite")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_attack_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_lpjf7"]
+resource_name = "Hammer"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [20, 24]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerSprite")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_attack_finished"
 }]
 }
 
@@ -102,7 +173,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [8]
+"values": [7]
 }
 
 [sub_resource type="Animation" id="Animation_i1b5q"]
@@ -118,7 +189,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [7]
+"values": [6]
 }
 
 [sub_resource type="Animation" id="Animation_476xj"]
@@ -134,7 +205,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [6]
+"values": [5]
 }
 
 [sub_resource type="Animation" id="Animation_m3wsf"]
@@ -151,7 +222,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1, 5]
+"values": [0, 4]
 }
 
 [sub_resource type="Animation" id="Animation_4g54e"]
@@ -185,6 +256,7 @@ tracks/1/keys = {
 _data = {
 "Axe": SubResource("Animation_b4emf"),
 "Bow": SubResource("Animation_3xten"),
+"Hammer": SubResource("Animation_lpjf7"),
 "Idle": SubResource("Animation_pdlma"),
 "Jump_down": SubResource("Animation_0tob2"),
 "Jump_middle": SubResource("Animation_i1b5q"),
@@ -198,6 +270,9 @@ animation = &"Axe"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qjemn"]
 animation = &"Bow"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lumrj"]
+animation = &"Hammer"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1uv24"]
 animation = &"Idle"
@@ -245,11 +320,19 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cgq3w"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_760lk"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vjk1i"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iem07"]
 states/Axe/node = SubResource("AnimationNodeAnimation_5pu04")
 states/Axe/position = Vector2(253, 214)
 states/Bow/node = SubResource("AnimationNodeAnimation_qjemn")
 states/Bow/position = Vector2(485, 214)
+states/Hammer/node = SubResource("AnimationNodeAnimation_lumrj")
+states/Hammer/position = Vector2(362, 214)
 states/Idle/node = SubResource("AnimationNodeAnimation_1uv24")
 states/Idle/position = Vector2(362, 97)
 states/Jump/node = SubResource("AnimationNodeBlendSpace1D_6y8hk")
@@ -257,7 +340,7 @@ states/Jump/position = Vector2(362, 7)
 states/Move/node = SubResource("AnimationNodeAnimation_orqab")
 states/Move/position = Vector2(485, 97)
 states/Start/position = Vector2(253, 97)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_280ma"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_tq7t5"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_0e8tj"), "Idle", "Axe", SubResource("AnimationNodeStateMachineTransition_j0ff0"), "Axe", "Idle", SubResource("AnimationNodeStateMachineTransition_1ylva"), "Bow", "Idle", SubResource("AnimationNodeStateMachineTransition_n1c3y"), "Idle", "Bow", SubResource("AnimationNodeStateMachineTransition_cgq3w")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_280ma"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_tq7t5"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_0e8tj"), "Idle", "Axe", SubResource("AnimationNodeStateMachineTransition_j0ff0"), "Axe", "Idle", SubResource("AnimationNodeStateMachineTransition_1ylva"), "Bow", "Idle", SubResource("AnimationNodeStateMachineTransition_n1c3y"), "Idle", "Bow", SubResource("AnimationNodeStateMachineTransition_cgq3w"), "Hammer", "Idle", SubResource("AnimationNodeStateMachineTransition_760lk"), "Idle", "Hammer", SubResource("AnimationNodeStateMachineTransition_vjk1i")]
 graph_offset = Vector2(-172, -67.1428)
 
 [node name="Player" type="CharacterBody2D"]
@@ -283,7 +366,8 @@ disabled = true
 unique_name_in_owner = true
 position = Vector2(0, -4)
 texture = ExtResource("2_reiaa")
-hframes = 19
+hframes = 5
+vframes = 5
 script = ExtResource("3_0yq0i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSprite"]
@@ -324,13 +408,14 @@ text = "State: "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "idle_state", "move_state", "jump_state", "axe_state", "bow_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "idle_state", "move_state", "jump_state", "axe_state", "hammer_state", "bow_state")]
 script = ExtResource("3_j7651")
 current_state = NodePath("Idle")
 idle_state = NodePath("Idle")
 move_state = NodePath("Move")
 jump_state = NodePath("Jump")
 axe_state = NodePath("Axe")
+hammer_state = NodePath("Hammer")
 bow_state = NodePath("Bow")
 
 [node name="Idle" type="Node" parent="StateMachine"]
@@ -351,6 +436,10 @@ script = ExtResource("5_trryc")
 script = ExtResource("7_jqu64")
 hitbox = NodePath("../../Hitbox")
 
+[node name="Hammer" type="Node" parent="StateMachine" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("12_8mr0d")
+hitbox = NodePath("../../Hitbox")
+
 [node name="Bow" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "muzzle")]
 script = ExtResource("9_4c03b")
 idle_state = NodePath("../Idle")
@@ -358,7 +447,5 @@ move_state = NodePath("../Move")
 muzzle = NodePath("../../Muzzle/Bow")
 
 [connection signal="attack_animation_finished" from="PlayerSprite" to="StateMachine/Axe" method="_on_player_sprite_attack_animation_finished"]
+[connection signal="attack_animation_finished" from="PlayerSprite" to="StateMachine/Hammer" method="_on_player_sprite_attack_animation_finished"]
 [connection signal="attack_animation_finished" from="PlayerSprite" to="StateMachine/Bow" method="_on_player_sprite_attack_animation_finished"]
-[connection signal="animation_finished" from="PlayerSprite/AnimationTree" to="PlayerSprite" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_player_changed" from="PlayerSprite/AnimationTree" to="StateMachine/Axe" method="_on_animation_tree_animation_player_changed"]
-[connection signal="animation_player_changed" from="PlayerSprite/AnimationTree" to="StateMachine/Bow" method="_on_animation_tree_animation_player_changed"]

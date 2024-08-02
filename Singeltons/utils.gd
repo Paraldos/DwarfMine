@@ -17,11 +17,12 @@ var active_set = true
 func _ready():
 	for i in 12:
 		inventory.bag.append(null)
-	inventory.weapon_1 = LootGenerator._create_axe()
+	inventory.weapon_1 = LootGenerator._create_hammer()
 	inventory.weapon_2 = LootGenerator._create_bow()
 	inventory.armor = LootGenerator._create_armor()
 	inventory.bag[0] = LootGenerator._create_ring()
 	inventory.bag[1] = LootGenerator._create_amulet()
+	inventory.bag[2] = LootGenerator._create_axe()
 	inventory.bag[5] = LootGenerator._create_armor()
 
 func _switch_two_item_slots(slot1, slot2):
@@ -32,7 +33,7 @@ func _switch_two_item_slots(slot1, slot2):
 	switch_set.emit()
 
 func _get_player_dmg():
-	var dmg = {value = 0, type = "Bashing"}
+	var dmg = {value = 1, type = "Bashing"}
 	if _get_current_weapon() != null:
 		dmg.type = _get_current_weapon().dmg_type
 		dmg.value += _get_current_weapon().dmg

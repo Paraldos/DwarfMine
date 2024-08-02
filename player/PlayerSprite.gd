@@ -14,6 +14,5 @@ func _change_animation(new_animation):
 func _set_direction(velocity):
 	animation_tree.set("parameters/Jump/blend_position", velocity.y / 50)
 
-func _on_animation_tree_animation_finished(anim_name):
-	if anim_name == "Axe" or anim_name == "Bow":
-		attack_animation_finished.emit()
+func _attack_finished():
+	attack_animation_finished.emit()
