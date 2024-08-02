@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ccw8gfat7o1kc" path="res://Projectiles/projectile.tscn" id="1_h6ejw"]
 [ext_resource type="Texture2D" uid="uid://ds3xulx2ifdl6" path="res://assets/images/Arrow.png" id="2_pq4c8"]
-[ext_resource type="Script" path="res://components/ExplosionOnQueueFree.gd" id="3_dqjhj"]
+[ext_resource type="Script" path="res://components/fx_spawner.gd" id="3_g7phb"]
 [ext_resource type="PackedScene" uid="uid://dh7ryvpkpamm5" path="res://Effects/explosion_2.tscn" id="4_pxqmy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qd4yb"]
@@ -19,8 +19,6 @@ texture = ExtResource("2_pq4c8")
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_qd4yb")
 
-[node name="ExplosionOnQueueFree" type="Node" parent="." index="3"]
-script = ExtResource("3_dqjhj")
+[node name="FXSpawner" type="Node2D" parent="." index="3"]
+script = ExtResource("3_g7phb")
 effect = ExtResource("4_pxqmy")
-
-[connection signal="tree_exiting" from="ExplosionOnQueueFree" to="ExplosionOnQueueFree" method="_on_tree_exiting"]

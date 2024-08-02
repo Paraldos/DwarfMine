@@ -2,14 +2,20 @@ extends Node2D
 
 @onready var sprite_2d = %Sprite2D
 @onready var treasure_spawner = $TreasureSpawner
+@onready var interaction_area = $InteractionArea
+@onready var collision_shape_hurtbox = %CollisionShapeHurtbox
+@onready var fx_spawner = $FXSpawner
 
 func _on_hurt_box_hit(dmg):
 	if sprite_2d.frame == 0:
-		_open()
+		call_deferred("_deferred_open")
 
 func _on_interaction_area_interacted():
-	_open()
+	call_deferred("_deferred_open")
 
-func _open():
+func _deferred_open():
+	collision_shape_hurtbox.disabled = true
 	sprite_2d.frame += 1
+	interaction_area._disable()
 	treasure_spawner._spawn_treasure()
+	fx_spawner._spawn()

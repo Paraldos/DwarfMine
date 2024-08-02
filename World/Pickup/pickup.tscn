@@ -29,3 +29,5 @@ displayed_text = "pick up"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_xq6cg")
+
+[connection signal="interacted" from="InteractionArea" to="." method="_on_interaction_area_interacted"]

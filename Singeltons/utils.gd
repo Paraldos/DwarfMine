@@ -73,3 +73,9 @@ func _get_selected_item():
 func _switch_set():
 	active_set = !active_set
 	switch_set.emit()
+
+func _player_has_free_inventory_space():
+	for i in inventory.bag:
+		if i == null:
+			return true
+	return false

@@ -17,5 +17,7 @@ func _spawn_pickup():
 	newPickup.global_position = get_parent().global_position
 	newPickup.velocity.x = rng.randi_range(-150, 150)
 	newPickup.velocity.y = rng.randi_range(-120, -80)
-	get_tree().current_scene.add_child(newPickup)
+	call_deferred("_add_pickup_to_scene", newPickup)
 
+func _add_pickup_to_scene(newPickup):
+	get_tree().current_scene.add_child(newPickup)

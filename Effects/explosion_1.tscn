@@ -20,5 +20,3 @@ damping_max = 300.0
 scale_amount_max = 5.0
 color_ramp = SubResource("Gradient_v8fdi")
 script = ExtResource("1_6rua6")
-
-[connection signal="finished" from="." to="." method="_on_finished"]
