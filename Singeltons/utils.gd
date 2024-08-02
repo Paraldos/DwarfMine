@@ -11,6 +11,7 @@ var inventory = {
 	trinket = null,
 	bag = []
 }
+var gold = 0
 var selected_slot = null
 var active_set = true
 

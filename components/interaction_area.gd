@@ -2,7 +2,6 @@ extends Area2D
 
 signal interacted
 @export var displayed_text = "Interact"
-@export var disable_after_interaction = true
 @onready var label = $Label
 @onready var animation_player = $AnimationPlayer
 var enabled = true
@@ -20,8 +19,6 @@ func _disable():
 func _input(event):
 	if event.is_action_pressed("interact") and enabled and player_inside:
 		interacted.emit()
-		if disable_after_interaction:
-			_disable()
 
 func _on_body_entered(body):
 	if enabled:

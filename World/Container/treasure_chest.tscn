@@ -16,6 +16,7 @@ radius = 5.0
 
 [node name="TreasureChest" type="Node2D"]
 script = ExtResource("1_21due")
+treasure_size = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -43,7 +44,6 @@ shape = SubResource("CircleShape2D_vgtip")
 
 [node name="TreasureSpawner" type="Node" parent="."]
 script = ExtResource("4_g0y5n")
-treasure_size = 1
 
 [node name="FXSpawner" type="Node2D" parent="."]
 position = Vector2(0, -3)
