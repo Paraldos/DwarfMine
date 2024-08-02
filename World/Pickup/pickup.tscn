@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bah56w811rgui"]
+
+[ext_resource type="Script" path="res://World/Pickup/pickup.gd" id="1_rpnf4"]
+[ext_resource type="PackedScene" uid="uid://qmo42ehmat1a" path="res://components/interaction_area.tscn" id="2_0e1yx"]
+[ext_resource type="Texture2D" uid="uid://bx8aegmqcg4dw" path="res://assets/images/Hammer.png" id="2_h3qyt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvpp8"]
+size = Vector2(8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xq6cg"]
+radius = 4.0
+
+[node name="Pickup" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_rpnf4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("2_h3qyt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_nvpp8")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_0e1yx")]
+position = Vector2(0, -10)
+displayed_text = "pick up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_xq6cg")

@@ -7,7 +7,7 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var next_sate: State = null
 
 func _enter() -> void:
-	charackter._change_animation(name)
+	charackter.player_sprite._change_animation(name)
 
 func exit() -> void:
 	pass

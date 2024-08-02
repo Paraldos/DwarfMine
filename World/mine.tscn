@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://bl03yhkd368jy"]
+[gd_scene load_steps=10 format=3 uid="uid://bl03yhkd368jy"]
 
 [ext_resource type="PackedScene" uid="uid://bq528jtxyk2wr" path="res://World/Tilemap/tile_map.tscn" id="1_qx6gc"]
 [ext_resource type="PackedScene" uid="uid://kohth56j1tb8" path="res://player/player.tscn" id="2_fjm2y"]
 [ext_resource type="PackedScene" uid="uid://jlyu48c7rh1f" path="res://Enemies/Dummy/dummy.tscn" id="3_n8ls1"]
 [ext_resource type="PackedScene" uid="uid://bxrjbaukelt0x" path="res://World/Scatter/plant.tscn" id="4_4otdw"]
+[ext_resource type="PackedScene" uid="uid://bft1o7axonb8y" path="res://World/Container/treasure_chest.tscn" id="4_e4aj6"]
 [ext_resource type="PackedScene" uid="uid://ygaku67xubmh" path="res://World/Scatter/mushroom.tscn" id="5_qj2xq"]
 [ext_resource type="PackedScene" uid="uid://jd76tfnv4mfi" path="res://World/Scatter/hanging_plant.tscn" id="6_ccong"]
 [ext_resource type="PackedScene" uid="uid://bgdh7qleifsav" path="res://ui/ui.tscn" id="7_rrsha"]
+[ext_resource type="PackedScene" uid="uid://bah56w811rgui" path="res://World/Pickup/pickup.tscn" id="9_mm3pt"]
 
 [node name="Mine" type="Node2D"]
 
@@ -37,6 +39,9 @@ position = Vector2(44, 72)
 [node name="Mushroom2" parent="Back" instance=ExtResource("5_qj2xq")]
 position = Vector2(124, 72)
 
+[node name="TreasureChest" parent="Back" instance=ExtResource("4_e4aj6")]
+position = Vector2(56, 72)
+
 [node name="Middle" type="Node2D" parent="."]
 
 [node name="Player" parent="Middle" instance=ExtResource("2_fjm2y")]
@@ -66,3 +71,6 @@ position = Vector2(20, 72)
 position = Vector2(100, 56)
 
 [node name="UI" parent="." instance=ExtResource("7_rrsha")]
+
+[node name="Pickup" parent="." instance=ExtResource("9_mm3pt")]
+position = Vector2(96, 40)

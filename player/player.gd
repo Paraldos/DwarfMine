@@ -19,8 +19,5 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("switch_set"):
 		Utils._switch_set()
 
-func _change_animation(animation_name):
-	player_sprite._change_animation(animation_name)
-
 func _gravity(delta):
 	velocity.y += gravity * delta

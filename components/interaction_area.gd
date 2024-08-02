@@ -1,0 +1,31 @@
+extends Area2D
+
+signal interacted
+@export var displayed_text = "Interact"
+@export var disable_after_interaction = true
+@onready var label = $Label
+@onready var animation_player = $AnimationPlayer
+var enabled = true
+
+func _ready():
+	label.text = "Press Y to " + displayed_text
+	label.modulate = Color("#ffffff00")
+
+func _disable():
+	enabled = false
+	if label.modulate != Color("#ffffff00"):
+		animation_player.play_backwards("fade_in")
+
+func _input(event):
+	if event.is_action_pressed("interact") and enabled:
+		interacted.emit()
+		if disable_after_interaction:
+			_disable()
+
+func _on_body_entered(body):
+	if enabled:
+		animation_player.play("fade_in")
+
+func _on_body_exited(body):
+	if enabled:
+		animation_player.play_backwards("fade_in")
