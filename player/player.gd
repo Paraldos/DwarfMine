@@ -6,7 +6,6 @@ extends CharacterBody2D
 @onready var hitbox = %Hitbox
 @onready var player_sprite = %PlayerSprite
 @onready var muzzle = $Muzzle
-var inventory = preload("res://Menus/Inventory/inventory.tscn")
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_left = false
 
@@ -18,9 +17,6 @@ func _physics_process(delta):
 	state_machine._state_physics_process(delta)
 	_set_direction(velocity)
 	move_and_slide()
-	if Input.is_action_just_pressed("inventory"):
-		var new_inventory_screen = inventory.instantiate()
-		get_tree().current_scene.add_child(new_inventory_screen)
 	if Input.is_action_just_pressed("switch_set"):
 		Utils._switch_set()
 

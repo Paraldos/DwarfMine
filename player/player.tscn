@@ -1,6 +1,7 @@
-[gd_scene load_steps=45 format=3 uid="uid://kohth56j1tb8"]
+[gd_scene load_steps=46 format=3 uid="uid://kohth56j1tb8"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3xeo1"]
+[ext_resource type="Script" path="res://components/OpenInventory.gd" id="2_76jhg"]
 [ext_resource type="Texture2D" uid="uid://d4h34w7a0n81s" path="res://assets/images/Player-Sheet.png" id="2_reiaa"]
 [ext_resource type="Script" path="res://player/PlayerSprite.gd" id="3_0yq0i"]
 [ext_resource type="Script" path="res://player/States/StateMachine.gd" id="3_j7651"]
@@ -347,6 +348,9 @@ graph_offset = Vector2(-172, -67.1428)
 collision_layer = 2
 script = ExtResource("1_3xeo1")
 
+[node name="OpenInventory" type="Node" parent="."]
+script = ExtResource("2_76jhg")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_ohhtx")
@@ -391,7 +395,6 @@ position = Vector2(8, -3)
 
 [node name="StateLabel" type="Label" parent="."]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
