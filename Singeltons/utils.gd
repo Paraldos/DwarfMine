@@ -14,6 +14,7 @@ var inventory = {
 var gold = 0
 var selected_slot = null
 var active_set = true
+var interactables = []
 
 func _ready():
 	for i in 12:

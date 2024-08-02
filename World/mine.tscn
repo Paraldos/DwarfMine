@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bl03yhkd368jy"]
+[gd_scene load_steps=9 format=3 uid="uid://bl03yhkd368jy"]
 
 [ext_resource type="PackedScene" uid="uid://bq528jtxyk2wr" path="res://World/Tilemap/tile_map.tscn" id="1_qx6gc"]
 [ext_resource type="PackedScene" uid="uid://kohth56j1tb8" path="res://player/player.tscn" id="2_fjm2y"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://ygaku67xubmh" path="res://World/Scatter/mushroom.tscn" id="5_qj2xq"]
 [ext_resource type="PackedScene" uid="uid://jd76tfnv4mfi" path="res://World/Scatter/hanging_plant.tscn" id="6_ccong"]
 [ext_resource type="PackedScene" uid="uid://bgdh7qleifsav" path="res://ui/ui.tscn" id="7_rrsha"]
-[ext_resource type="PackedScene" uid="uid://g1s3ovphba6k" path="res://World/Pickup/coin.tscn" id="10_c62wy"]
 
 [node name="Mine" type="Node2D"]
 
@@ -42,23 +41,11 @@ position = Vector2(124, 72)
 [node name="TreasureChest" parent="Back" instance=ExtResource("4_e4aj6")]
 position = Vector2(56, 72)
 
-[node name="Coin" parent="Back" instance=ExtResource("10_c62wy")]
-position = Vector2(76, 56)
+[node name="TreasureChest2" parent="Back" instance=ExtResource("4_e4aj6")]
+position = Vector2(88, 48)
 
-[node name="Coin2" parent="Back" instance=ExtResource("10_c62wy")]
-position = Vector2(84, 48)
-
-[node name="Coin3" parent="Back" instance=ExtResource("10_c62wy")]
-position = Vector2(92, 48)
-
-[node name="Coin4" parent="Back" instance=ExtResource("10_c62wy")]
-position = Vector2(100, 56)
-
-[node name="Coin5" parent="Back" instance=ExtResource("10_c62wy")]
-position = Vector2(108, 72)
-
-[node name="Coin6" parent="Back" instance=ExtResource("10_c62wy")]
-position = Vector2(116, 72)
+[node name="TreasureChest3" parent="Back" instance=ExtResource("4_e4aj6")]
+position = Vector2(128, 72)
 
 [node name="Middle" type="Node2D" parent="."]
 

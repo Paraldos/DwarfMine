@@ -21,6 +21,6 @@ func _on_interaction_area_interacted():
 func _deferred_open():
 	collision_shape_hurtbox.disabled = true
 	sprite_2d.frame += 1
-	interaction_area._disable()
+	interaction_area._change_status(false)
 	treasure_spawner._spawn_treasure()
 	fx_spawner._spawn()

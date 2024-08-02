@@ -15,7 +15,7 @@ func _ready():
 	_update_set_label()
 	Utils.switch_set.connect(_update_set_label)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("inventory"):
 		queue_free()
 	if Input.is_action_just_pressed("switch_set"):

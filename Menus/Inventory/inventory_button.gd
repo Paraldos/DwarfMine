@@ -11,7 +11,7 @@ func _ready():
 	Utils.switch_set.connect(_on_reset_button)
 	_change_color()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("switch_items") && has_focus() && item:
 		if item.type == "Weapon":
 			var weapon_slot = ["weapon_1", 0] if Utils.active_set else ["weapon_2", 0]
@@ -48,7 +48,7 @@ func _on_pressed():
 		Utils._switch_two_item_slots(slot, Utils.selected_slot)
 		_on_cancel()
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		_on_cancel()
 
