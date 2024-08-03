@@ -7,7 +7,6 @@ class_name StateMachine
 @export var move_state: State
 @export var jump_state: State
 @export var axe_state: State
-@export var hammer_state: State
 @export var bow_state: State
 @onready var state_label = %StateLabel
 var states = []
@@ -39,8 +38,8 @@ func _change_state(new_state: String):
 				current_state = idle_state
 			elif "Axe" in current_weapon.title:
 				current_state = axe_state
+			elif "Hammer" in current_weapon.title:
+				current_state = axe_state
 			elif "Bow" in current_weapon.title:
 				current_state = bow_state
-			elif "Hammer" in current_weapon.title:
-				current_state = hammer_state
 	current_state._enter()
