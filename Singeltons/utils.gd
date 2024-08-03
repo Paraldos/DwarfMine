@@ -24,8 +24,6 @@ func _ready():
 	inventory.armor = LootGenerator._create_armor()
 	inventory.bag[0] = LootGenerator._create_ring()
 	inventory.bag[1] = LootGenerator._create_amulet()
-	inventory.bag[2] = LootGenerator._create_axe()
-	inventory.bag[5] = LootGenerator._create_armor()
 
 func _switch_two_item_slots(slot1, slot2):
 	var item1 = _get_item(slot1)
@@ -81,3 +79,9 @@ func _player_has_free_inventory_space():
 		if i == null:
 			return true
 	return false
+
+func _add_item_to_inventory(item):
+	for i in inventory.bag.size():
+		if inventory.bag[i] == null:
+			inventory.bag[i] = item
+			return

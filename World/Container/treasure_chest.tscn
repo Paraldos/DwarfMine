@@ -36,7 +36,6 @@ shape = SubResource("RectangleShape2D_2538b")
 
 [node name="InteractionArea" parent="." instance=ExtResource("5_hd1i0")]
 position = Vector2(0, -10)
-displayed_text = "open"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(0, 7)
@@ -51,4 +50,5 @@ script = ExtResource("6_6yxvl")
 effect = ExtResource("7_qstp3")
 
 [connection signal="hit" from="HurtBox" to="." method="_on_hurt_box_hit"]
+[connection signal="in_focus" from="InteractionArea" to="." method="_on_interaction_area_in_focus"]
 [connection signal="interacted" from="InteractionArea" to="." method="_on_interaction_area_interacted"]

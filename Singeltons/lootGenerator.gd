@@ -1,5 +1,16 @@
 extends Node
 
+func _get_randome_item():
+	var possible_items = [
+		_create_axe,
+		_create_hammer,
+		_create_bow,
+		_create_ring,
+		_create_amulet,
+		_create_armor
+	]
+	return possible_items[randi() % possible_items.size()].call()
+
 func _create_axe(rand = true):
 	var item = Item.new("Axe", preload("res://assets/images/Axe.png"), "Weapon")
 	item._set_dmg(10, 'Slashing')

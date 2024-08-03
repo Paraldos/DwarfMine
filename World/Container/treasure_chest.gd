@@ -24,3 +24,6 @@ func _deferred_open():
 	interaction_area._change_status(false)
 	treasure_spawner._spawn_treasure()
 	fx_spawner._spawn()
+
+func _on_interaction_area_in_focus():
+	interaction_area._change_message_and_color("Click Y to open chest")

@@ -1,14 +1,14 @@
 extends Area2D
 
 signal interacted
-@export var displayed_text = "Interact"
+signal in_focus
 @export var cooldown = 0.0
 @onready var label = $Label
 var player_inside = false
 var focus = false
+var can_be_picked_up = false
 
 func _ready():
-	label.text = "Press Y to " + displayed_text
 	modulate = Color(1, 1, 1, 0)
 	if cooldown > 0:
 		_change_status(false)
@@ -19,10 +19,14 @@ func _physics_process(delta):
 	if !player_inside: return
 	if Utils.interactables[-1] == self:
 		focus = true
-		_tween_modulate(Color("#ffffff"))
+		in_focus.emit()
 	else:
 		focus = false
 		_tween_modulate(Color("#ffffff00"))
+
+func _change_message_and_color(new_message = "Press Y to interact", new_color = Color("#ffffff")):
+	label.text = new_message
+	_tween_modulate(new_color)
 
 func _input(event):
 	if event.is_action_pressed("interact") and player_inside and focus:
