@@ -44,11 +44,11 @@ func _set_armour(piercing, slashing, bashing, fire, ice, lightning):
 
 func _get_item_color():
 	if item_quality == ItemQuality.NORMAL:
-		return Color("#616161")
+		return Color("#757575")
 	elif item_quality == ItemQuality.RARE:
-		return Color("#738ffe")
+		return Color("#3f51b5")
 	else:
-		return Color("#ffee58")
+		return Color("#d84315")
 
 func _rand():
 	var quality_rng = rng.randi_range(0, 100)

@@ -1,11 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bah56w811rgui"]
-
-[ext_resource type="Script" path="res://World/Pickup/pickup.gd" id="1_rpnf4"]
-[ext_resource type="PackedScene" uid="uid://qmo42ehmat1a" path="res://components/interaction_area.tscn" id="2_0e1yx"]
-[ext_resource type="Texture2D" uid="uid://bx8aegmqcg4dw" path="res://assets/images/Hammer.png" id="2_h3qyt"]
-
-[sub_resource type="Shader" id="Shader_vxsve"]
-code = "shader_type canvas_item;
+shader_type canvas_item;
 
 uniform vec4 color : source_color = vec4(1.0);
 uniform float width : hint_range(0, 10) = 1.0;
@@ -69,44 +62,4 @@ void fragment() {
 		COLOR.rgb = inside ? mix(COLOR.rgb, color.rgb, color.a) : color.rgb;
 		COLOR.a += (1.0 - COLOR.a) * color.a;
 	}
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ojqt"]
-shader = SubResource("Shader_vxsve")
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/width = 0.5
-shader_parameter/pattern = 0
-shader_parameter/inside = false
-shader_parameter/add_margins = true
-shader_parameter/number_of_images = Vector2(1, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_v3s2v"]
-radius = 4.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_tjdps"]
-radius = 4.0
-
-[node name="Pickup" type="CharacterBody2D"]
-collision_layer = 0
-script = ExtResource("1_rpnf4")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-material = SubResource("ShaderMaterial_5ojqt")
-position = Vector2(0, -4)
-texture = ExtResource("2_h3qyt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-shape = SubResource("CircleShape2D_v3s2v")
-
-[node name="InteractionArea" parent="." instance=ExtResource("2_0e1yx")]
-position = Vector2(0, -9)
-cooldown = 0.5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(0, 5)
-shape = SubResource("CircleShape2D_tjdps")
-
-[connection signal="in_focus" from="InteractionArea" to="." method="_on_interaction_area_in_focus"]
-[connection signal="interacted" from="InteractionArea" to="." method="_on_interaction_area_interacted"]
+}
