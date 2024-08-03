@@ -5,7 +5,7 @@ extends Control
 @onready var animation_player = $AnimationPlayer
 
 func _on():
-	var item = Utils._get_selected_item()
+	var item = InventoryController._get_selected_item()
 	if item:
 		icon_rect.texture = item.icon
 		border_rect.self_modulate = item._get_item_color()

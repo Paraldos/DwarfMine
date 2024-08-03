@@ -7,12 +7,12 @@ extends Control
 
 func _ready():
 	_update()
-	Utils.switch_set.connect(_update)
+	InventoryController.switch_set.connect(_update)
 
 func _update():
-	var wepaon_1 = Utils.inventory.weapon_1
-	var weapon_2 = Utils.inventory.weapon_2
-	set_1_icon.texture = wepaon_1.icon
-	set_2_icon.texture = weapon_2.icon
-	set_1.z_index = 5 if Utils.active_set else 0
-	set_2.z_index = 0 if Utils.active_set else 5
+	var wepaon_1 = InventoryController.inventory.weapon_1
+	var weapon_2 = InventoryController.inventory.weapon_2
+	set_1_icon.texture = wepaon_1.icon if wepaon_1 else null
+	set_2_icon.texture = weapon_2.icon if weapon_2 else null
+	set_1.z_index = 5 if InventoryController.active_set else 0
+	set_2.z_index = 0 if InventoryController.active_set else 5

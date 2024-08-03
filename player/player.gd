@@ -17,7 +17,7 @@ func _physics_process(delta):
 	facing_left = player_direction._set_direction(delta, velocity)
 	move_and_slide()
 	if Input.is_action_just_pressed("switch_set"):
-		Utils._switch_set()
+		InventoryController._switch_set()
 
 func _gravity(delta):
 	velocity.y += gravity * delta

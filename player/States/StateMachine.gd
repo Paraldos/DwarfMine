@@ -24,6 +24,7 @@ func _state_physics_process(delta):
 	current_state._state_physics_process(delta)
 
 func _change_state(new_state: String):
+	var current_weapon = InventoryController._get_current_weapon()
 	if current_state:
 		current_state.exit()
 	match new_state:
@@ -34,11 +35,12 @@ func _change_state(new_state: String):
 		"jump":
 			current_state = jump_state
 		"attack":
-			var weapon_title = Utils._get_current_weapon().title
-			if "Axe" in weapon_title:
+			if !current_weapon:
+				current_state = idle_state
+			elif "Axe" in current_weapon.title:
 				current_state = axe_state
-			elif "Bow" in weapon_title:
+			elif "Bow" in current_weapon.title:
 				current_state = bow_state
-			elif "Hammer" in weapon_title:
+			elif "Hammer" in current_weapon.title:
 				current_state = hammer_state
 	current_state._enter()

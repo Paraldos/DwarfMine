@@ -26,5 +26,5 @@ func _gravity_and_friction(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.name == "Player" and pickable:
-		Utils.gold += worth
+		InventoryController.gold += worth
 		queue_free()

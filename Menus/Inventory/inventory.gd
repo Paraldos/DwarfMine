@@ -13,13 +13,13 @@ func _ready():
 	get_tree().paused = true
 	_init_inventory()
 	_update_set_label()
-	Utils.switch_set.connect(_update_set_label)
+	InventoryController.switch_set.connect(_update_set_label)
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("inventory"):
 		queue_free()
 	if Input.is_action_just_pressed("switch_set"):
-		Utils._switch_set()
+		InventoryController._switch_set()
 
 func _init_inventory():
 	weapon_1._init_inventory_btn(["weapon_1", 0])
@@ -28,7 +28,7 @@ func _init_inventory():
 	trinket._init_inventory_btn(["trinket", 0])
 	for child in bag_container.get_children():
 		child.queue_free()
-	for i in Utils.inventory.bag.size():
+	for i in InventoryController.inventory.bag.size():
 		var new_btn = inventory_button.instantiate()
 		bag_container.add_child(new_btn)
 		new_btn._init_inventory_btn(["bag", i])
@@ -39,5 +39,5 @@ func _on_tree_exiting():
 	get_tree().paused = false
 
 func _update_set_label():
-	label_set_1.modulate = Color('White') if Utils.active_set else Color("ffffff64")
-	label_set_2.modulate = Color('ffffff64') if Utils.active_set else Color("White")
+	label_set_1.modulate = Color('White') if InventoryController.active_set else Color("ffffff64")
+	label_set_2.modulate = Color('ffffff64') if InventoryController.active_set else Color("White")

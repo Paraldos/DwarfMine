@@ -4,7 +4,7 @@ var item = null
 var is_valid = false
 
 func _ready():
-	Utils.inventory_description_update.connect(_on_inventory_description_update)
+	InventoryController.inventory_description_update.connect(_on_inventory_description_update)
 
 func _on_inventory_description_update(item : Item, is_valid):
 	self.item = item
@@ -32,8 +32,8 @@ func _add_dmg():
 
 func _add_dmg_differenz(newLabel):
 	if !is_valid: return
-	var current_weapon = Utils._get_current_weapon()
-	var selected_weapon = Utils._get_selected_item()
+	var current_weapon = InventoryController._get_current_weapon()
+	var selected_weapon = InventoryController._get_selected_item()
 	if !selected_weapon && current_weapon && item != current_weapon:
 		var differenz = item.dmg - current_weapon.dmg
 		newLabel.text += " (%s)" % [differenz]
@@ -44,8 +44,8 @@ func _add_dmg_differenz(newLabel):
 
 func _add_selected_dmg_differenz(newLabel):
 	if !is_valid: return
-	var current_weapon = Utils._get_current_weapon()
-	var selected_weapon = Utils._get_selected_item()
+	var current_weapon = InventoryController._get_current_weapon()
+	var selected_weapon = InventoryController._get_selected_item()
 	if selected_weapon && item != selected_weapon:
 		var differenz = selected_weapon.dmg - item.dmg
 		newLabel.text += " (%s)" % [differenz]
@@ -56,8 +56,8 @@ func _add_selected_dmg_differenz(newLabel):
 
 func _add_armor():
 	if item != null and item.type == "Armor":
-		var current_armor = Utils._get_current_armor()
-		var selected_armor = Utils._get_selected_item()
+		var current_armor = InventoryController._get_current_armor()
+		var selected_armor = InventoryController._get_selected_item()
 		_add_armor_title()
 		var grid = _add_armor_grid()
 		_add_armor_label(grid)
@@ -86,8 +86,8 @@ func _add_armor_label(grid):
 
 func _add_armor_diffenrenz(armor_type, newLabel):
 	if !is_valid: return
-	var current_armor = Utils._get_current_armor()
-	var selected_armor = Utils._get_selected_item()
+	var current_armor = InventoryController._get_current_armor()
+	var selected_armor = InventoryController._get_selected_item()
 	if !selected_armor && current_armor && item != current_armor:
 		var differenz = item.armor[armor_type] - current_armor.armor[armor_type]
 		newLabel.text += " (%s)" % [differenz]
@@ -98,7 +98,7 @@ func _add_armor_diffenrenz(armor_type, newLabel):
 
 func _add_selected_armor_differenz(armor_type, newLabel):
 	if !is_valid: return
-	var selected_armor = Utils._get_selected_item()
+	var selected_armor = InventoryController._get_selected_item()
 	if selected_armor && item != selected_armor:
 		var differenz = selected_armor.armor[armor_type] - item.armor[armor_type]
 		newLabel.text += " (%s)" % [differenz]

@@ -21,12 +21,12 @@ func _gravity_and_friction(delta):
 	velocity.y += gravity * delta
 
 func _on_interaction_area_interacted():
-	if Utils._player_has_free_inventory_space():
-		Utils._add_item_to_inventory(item)
+	if InventoryController._player_has_free_inventory_space():
+		InventoryController._add_item_to_inventory(item)
 		queue_free()
 
 func _on_interaction_area_in_focus():
-	if Utils._player_has_free_inventory_space():
+	if InventoryController._player_has_free_inventory_space():
 		interaction_area._change_message_and_color("Press Y to pick up")
 	else:
 		interaction_area._change_message_and_color("Inventory is full", Color("red"))
