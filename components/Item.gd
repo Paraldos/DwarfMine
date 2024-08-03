@@ -53,11 +53,11 @@ func _get_item_color():
 func _rand():
 	var quality_rng = rng.randi_range(0, 100)
 	if quality_rng < 70:
-		title = "Normal  " + title
+		title = "Normal " + title
 		item_quality = ItemQuality.NORMAL
 	elif quality_rng < 90:
-		title = "Rare  " + title
+		title = "Masterly " + title
 		item_quality = ItemQuality.RARE
 	else:
-		title = "Magic  " + title
+		title = "Magic " + title
 		item_quality = ItemQuality.MAGIC
