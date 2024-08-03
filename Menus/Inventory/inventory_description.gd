@@ -1,19 +1,23 @@
 extends VBoxContainer
 
+var slot = ["bag", 0]
 var item = null
 var is_valid = false
 
 func _ready():
-	InventoryController.inventory_description_update.connect(_on_inventory_description_update)
+	InventoryController.inventory_new_focus.connect(_on_new_focus)
 
-func _on_inventory_description_update(item : Item, is_valid):
-	self.item = item
-	self.is_valid = is_valid
-	for child in get_children():
-		child.queue_free()
+func _on_new_focus(new_slot):
+	slot = new_slot
+	item = InventoryController._get_item(slot)
+	_clean_up()
 	_add_title()
 	_add_dmg()
 	_add_armor()
+
+func _clean_up():
+	for child in get_children():
+		child.queue_free()
 
 func _add_title():
 	if item != null:

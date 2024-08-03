@@ -1,7 +1,7 @@
 extends Node
 
 signal inventory_update
-signal inventory_description_update
+signal inventory_new_focus
 signal switch_set
 
 var inventory = {
@@ -12,9 +12,8 @@ var inventory = {
 	bag = []
 }
 var gold = 0
-var selected_slot = null
 var active_set = true
-var interactables = []
+var selected_slot = null
 
 func _ready():
 	for i in 12:
@@ -30,7 +29,24 @@ func _switch_two_item_slots(slot1, slot2):
 	var item2 = _get_item(slot2)
 	_put_item_into_slot(slot1, item2)
 	_put_item_into_slot(slot2, item1)
-	switch_set.emit()
+
+func _exchange_is_valid(slot_in_focus = null):
+	var item_in_focus = _get_item(slot_in_focus)
+	var selected_item = InventoryController._get_selected_item()
+	if !InventoryController.selected_slot:
+		return true
+	elif slot_in_focus[0] == selected_item.type.to_lower():
+		return true
+	elif (slot_in_focus[0] == "weapon_1" or slot_in_focus[0] == "weapon_2") and selected_item.type == "Weapon":
+		return true
+	elif slot_in_focus[0] == "bag" and !item_in_focus:
+		return true
+	elif slot_in_focus[0] == "bag" and InventoryController.selected_slot[0] == "bag":
+		return true
+	elif item_in_focus && item_in_focus.type == selected_item.type:
+		return true
+	else:
+		return false
 
 func _get_player_dmg():
 	var dmg = {value = 1, type = "Bashing"}
