@@ -2,7 +2,6 @@ extends VBoxContainer
 
 var slot = ["bag", 0]
 var item = null
-var is_valid = false
 
 func _ready():
 	InventoryController.inventory_new_focus.connect(_on_new_focus)
@@ -15,10 +14,12 @@ func _on_new_focus(new_slot):
 	_add_dmg()
 	_add_armor()
 
+# ==================================================== cleanup
 func _clean_up():
 	for child in get_children():
 		child.queue_free()
 
+# ==================================================== title
 func _add_title():
 	if item != null:
 		var newTitle = Label.new()
@@ -26,16 +27,18 @@ func _add_title():
 		newTitle.modulate = item._get_item_color()
 		add_child(newTitle)
 
+# ==================================================== dmg
 func _add_dmg():
-	if item != null and item.type == "Weapon":
-		var newLabel = Label.new()
-		newLabel.text = "Damage: %s (%s)" % [item.dmg, item.dmg_type]
-		_add_dmg_differenz(newLabel)
-		_add_selected_dmg_differenz(newLabel)
-		add_child(newLabel)
+	if item == null or item.type != "Weapon":
+		return
+	var newLabel = Label.new()
+	newLabel.text = "Damage: %s (%s)" % [item.dmg, item.dmg_type]
+	_add_dmg_differenz(newLabel)
+	_add_selected_dmg_differenz(newLabel)
+	add_child(newLabel)
 
 func _add_dmg_differenz(newLabel):
-	if !is_valid: return
+	if !InventoryController._exchange_is_valid(slot): return
 	var current_weapon = InventoryController._get_current_weapon()
 	var selected_weapon = InventoryController._get_selected_item()
 	if !selected_weapon && current_weapon && item != current_weapon:
@@ -47,7 +50,7 @@ func _add_dmg_differenz(newLabel):
 			newLabel.modulate = Color("#ff0000")
 
 func _add_selected_dmg_differenz(newLabel):
-	if !is_valid: return
+	if !InventoryController._exchange_is_valid(slot): return
 	var current_weapon = InventoryController._get_current_weapon()
 	var selected_weapon = InventoryController._get_selected_item()
 	if selected_weapon && item != selected_weapon:
@@ -58,6 +61,7 @@ func _add_selected_dmg_differenz(newLabel):
 		elif differenz < 0:
 			newLabel.modulate = Color("#ff0000")
 
+# ==================================================== armor
 func _add_armor():
 	if item != null and item.type == "Armor":
 		var current_armor = InventoryController._get_current_armor()
@@ -89,7 +93,7 @@ func _add_armor_label(grid):
 		_add_selected_armor_differenz(armor_type, newLabel)
 
 func _add_armor_diffenrenz(armor_type, newLabel):
-	if !is_valid: return
+	if !InventoryController._exchange_is_valid(slot): return
 	var current_armor = InventoryController._get_current_armor()
 	var selected_armor = InventoryController._get_selected_item()
 	if !selected_armor && current_armor && item != current_armor:
@@ -101,7 +105,7 @@ func _add_armor_diffenrenz(armor_type, newLabel):
 			newLabel.modulate = Color("#ff0000")
 
 func _add_selected_armor_differenz(armor_type, newLabel):
-	if !is_valid: return
+	if !InventoryController._exchange_is_valid(slot): return
 	var selected_armor = InventoryController._get_selected_item()
 	if selected_armor && item != selected_armor:
 		var differenz = selected_armor.armor[armor_type] - item.armor[armor_type]
