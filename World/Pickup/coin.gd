@@ -2,21 +2,20 @@ extends CharacterBody2D
 
 @export var worth = 10
 @export var cooldown = 0.2
+@onready var area_2d = $Area2D
 var item = null
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@onready var collision_shape_2d = $CollisionShape2D
-var pickable = false
 
 func _ready():
 	if cooldown > 0.0:
 		await get_tree().create_timer(cooldown).timeout
-		pickable = true
+		area_2d.monitoring = true
 	else:
-		pickable = true
+		area_2d.monitoring = true
 
 func _physics_process(delta):
 	if is_on_floor():
-		pickable = true
+		area_2d.monitoring = true
 	_gravity_and_friction(delta)
 	move_and_slide()
 
@@ -25,6 +24,6 @@ func _gravity_and_friction(delta):
 	velocity.y += gravity * delta
 
 func _on_area_2d_body_entered(body):
-	if body.name == "Player" and pickable:
+	if body.name == "Player":
 		InventoryController.gold += worth
 		queue_free()
