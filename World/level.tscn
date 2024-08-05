@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bv1r8p5kdfwlu"]
+[gd_scene load_steps=4 format=3 uid="uid://bv1r8p5kdfwlu"]
 
 [ext_resource type="PackedScene" uid="uid://bq528jtxyk2wr" path="res://World/Tilemap/tile_map.tscn" id="1_pens2"]
+[ext_resource type="Script" path="res://World/level.gd" id="1_v4yyi"]
 [ext_resource type="PackedScene" uid="uid://bgdh7qleifsav" path="res://ui/ui.tscn" id="2_ih6hy"]
 
-[node name="Level" type="Node2D"]
+[node name="RoomTemplate" type="Node2D"]
+script = ExtResource("1_v4yyi")
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1

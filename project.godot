@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="DwarfMine"
-run/main_scene="res://World/mine.tscn"
+run/main_scene="res://World/room_template.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Utils="*res://Singeltons/utils.tscn"
 LootGenerator="*res://Singeltons/lootGenerator.gd"
 InventoryController="*res://Singeltons/InventoryController.gd"
+MapGenerator="*res://Singeltons/map_generator.gd"
 
 [display]
 
