@@ -1,8 +1,8 @@
 extends Node2D
 
-@export var map_size = Vector2(10, 10)
-@export var amount_of_rooms = 10
-@export var max_attempts = 1000
+var map_size = Vector2(10, 10)
+var amount_of_rooms = 10
+var max_attempts = 1000
 var map = []
 var rng = RandomNumberGenerator.new()
 var start_room = Vector2()
@@ -10,6 +10,7 @@ var rooms = []
 
 func _ready():
 	rng.randomize()
+	await get_tree().process_frame
 	_generate_map()
 
 func _generate_map():
@@ -19,7 +20,6 @@ func _generate_map():
 		print("Map successfully generated.")
 	else:
 		print("Failed to place all rooms.")
-	_print_map()
 
 func _create_empty_map():
 	map = []
@@ -37,7 +37,7 @@ func _define_start_room():
 func _fill_dungeon_with_rooms():
 	var placed_rooms = amount_of_rooms - 1
 	var attempts = 0
-	while placed_rooms > 0 and attempts < max_attempts:
+	while placed_rooms > 1:
 		attempts += 1
 		rooms.shuffle()
 		var room = rooms[0]
@@ -57,6 +57,7 @@ func _fill_dungeon_with_rooms():
 				rooms.append(neighbor)
 				placed_rooms -= 1
 				attempts = 0
+				print(placed_rooms)
 	return placed_rooms == 0
 
 func _print_map():
