@@ -20,6 +20,4 @@ color = Color(0.129412, 0.129412, 0.129412, 1)
 [node name="UI" parent="." instance=ExtResource("3_acb08")]
 
 [node name="Rooms" type="Node2D" parent="."]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.3, 0.3)
+unique_name_in_owner = true

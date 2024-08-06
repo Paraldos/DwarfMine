@@ -1,7 +1,15 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cbu2rgcmbjxyq"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cbu2rgcmbjxyq"]
 
 [ext_resource type="FontFile" uid="uid://bf7q12syacanu" path="res://assets/fonts/PixelSimpel.otf" id="1_qbg4b"]
 [ext_resource type="Texture2D" uid="uid://23fo3wojd85x" path="res://assets/images/Panel.png" id="1_svj4q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8b6u"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fp2kb"]
 texture = ExtResource("1_svj4q")
@@ -13,4 +21,5 @@ texture_margin_bottom = 4.0
 [resource]
 default_font = ExtResource("1_qbg4b")
 default_font_size = 4
+Button/styles/normal = SubResource("StyleBoxFlat_b8b6u")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_fp2kb")
