@@ -1,8 +1,8 @@
 extends Node2D
 
-@export var map_size = Vector2(10, 10) # Größe der Karte (10x10 Einheiten)
-@export var amount_of_rooms = 10 # Anzahl der Räume
-@export var max_attempts = 1000 # Maximale Anzahl von Versuchen, um Räume zu platzieren
+@export var map_size = Vector2(10, 10)
+@export var amount_of_rooms = 10
+@export var max_attempts = 1000
 var map = []
 var rng = RandomNumberGenerator.new()
 var start_room = Vector2()
@@ -18,7 +18,7 @@ func _generate_map():
 	if _fill_dungeon_with_rooms():
 		print("Map successfully generated.")
 	else:
-		print("Failed to place all rooms within the maximum number of attempts.")
+		print("Failed to place all rooms.")
 	_print_map()
 
 func _create_empty_map():
@@ -68,32 +68,3 @@ func _get_randome_position():
 	var randi_x = rng.randi_range(0, (map_size.x - 1))
 	var randi_y = rng.randi_range(0, (map_size.y - 1))
 	return Vector2(randi_x, randi_y)
-
-func _check_if_position_is_valid(position):
-	var neighbors = [
-		Vector2(position.x - 1, position.y),
-		Vector2(position.x + 1, position.y),
-		Vector2(position.x, position.y - 1),
-		Vector2(position.x, position.y + 1)
-	]
-	for neighbor in neighbors:
-		if neighbor.x >= 0 and neighbor.x < int(map_size.x) and neighbor.y >= 0 and neighbor.y < int(map_size.y):
-			if map[int(neighbor.y)][int(neighbor.x)] == 1:
-				return true
-	return false
-
-func _get_valid_neighboor(position):
-	var neighbors = [
-		Vector2(position.x - 1, position.y),
-		Vector2(position.x + 1, position.y),
-		Vector2(position.x, position.y - 1),
-		Vector2(position.x, position.y + 1)
-	]
-	for neighbor in neighbors:
-		if neighbor.x < 0 or neighbor.x >= int(map_size.x):
-			continue
-		if neighbor.y < 0 or neighbor.y >= int(map_size.y):
-			continue
-		if map[int(neighbor.y)][int(neighbor.x)] == 1:
-			return Vector2(neighbor.x, neighbor.y)
-	return null
