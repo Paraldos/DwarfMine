@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv1r8p5kdfwlu"]
+
+[ext_resource type="Script" path="res://World/world.gd" id="1_1abjd"]
+[ext_resource type="PackedScene" uid="uid://bgdh7qleifsav" path="res://ui/ui.tscn" id="3_acb08"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_1abjd")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.129412, 0.129412, 1)
+
+[node name="UI" parent="." instance=ExtResource("3_acb08")]
+
+[node name="Rooms" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.3, 0.3)
