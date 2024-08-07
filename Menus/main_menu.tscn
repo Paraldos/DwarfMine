@@ -24,6 +24,7 @@ grow_vertical = 2
 theme = ExtResource("1_wdmbi")
 
 [node name="Button" type="Button" parent="Control"]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 10.0
 offset_right = 41.0
