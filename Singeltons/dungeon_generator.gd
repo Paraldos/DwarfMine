@@ -10,7 +10,7 @@ var unused_direcionts = []
 var map_size = Vector2(10, 10)
 var map = []
 var rng = RandomNumberGenerator.new()
-var start_room = Vector2()
+var start_position = Vector2()
 var rooms = []
 var lengt_of_corridors = 4
 var branches = 3
@@ -18,15 +18,15 @@ var placed_rooms = 0
 
 func _ready():
 	rng.randomize()
-	await get_tree().process_frame
 	_generate_map()
 
 func _generate_map():
 	_empty_map()
-	_define_start_room()
+	_define_start_position()
 	for branch in branches:
 		_fill_dungeon_with_rooms()
 	_clean_up_map()
+	_get_new_start_position()
 	_print_map()
 
 func _empty_map():
@@ -37,10 +37,10 @@ func _empty_map():
 			row.append(0)
 		map.append(row)
 
-func _define_start_room():
-	start_room = Vector2(map_size.x / 2, map_size.y / 2)
-	rooms.append(start_room)
-	map[start_room.y][start_room.x] = 2
+func _define_start_position():
+	start_position = Vector2(map_size.x / 2, map_size.y / 2)
+	rooms.append(start_position)
+	map[start_position.y][start_position.x] = 2
 
 
 func _fill_dungeon_with_rooms():
@@ -79,6 +79,12 @@ func _clean_up_map():
 		if column_is_empty:
 			for row in map.size():
 				map[row].pop_at(column)
+
+func _get_new_start_position():
+	for y in map.size():
+		for x in map[y].size():
+			if map[y][x] == 2:
+				start_position = Vector2(x, y)
 
 func _print_map():
 	for i in map:

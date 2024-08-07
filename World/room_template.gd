@@ -6,12 +6,19 @@ extends Node2D
 	bottom: false,
 	left: false,
 }
+
+@onready var tile_map = %TileMap
+@onready var back = %Back
+@onready var middle = %Middle
+@onready var front = %Front
+
 @onready var top = %Top
 @onready var right = %Right
 @onready var bottom = %Bottom
 @onready var left = %Left
 @onready var player_position = %PlayerPosition
 var player_template = preload("res://player/player.tscn")
+var world = null
 
 func _ready():
 	_set_borders()
@@ -28,7 +35,7 @@ func _set_borders():
 	bottom.disabled = openings.bottom
 
 func _on_area_2d_body_entered(body):
-	get_parent().get_parent()._move_camera(global_position)
+	world._move_camera(global_position)
 	z_index = 5
 
 func _on_area_2d_body_exited(body):
