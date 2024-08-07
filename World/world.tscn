@@ -21,3 +21,6 @@ color = Color(0.129412, 0.129412, 0.129412, 1)
 
 [node name="Rooms" type="Node2D" parent="."]
 unique_name_in_owner = true
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0

@@ -10,7 +10,6 @@ extends Node2D
 @onready var right = %Right
 @onready var bottom = %Bottom
 @onready var left = %Left
-@onready var camera_2d = $Camera2D
 @onready var player_position = %PlayerPosition
 var player_template = preload("res://player/player.tscn")
 
@@ -29,9 +28,8 @@ func _set_borders():
 	bottom.disabled = openings.bottom
 
 func _on_area_2d_body_entered(body):
-	camera_2d.enabled = true
+	get_parent().get_parent()._move_camera(global_position)
 	z_index = 5
 
 func _on_area_2d_body_exited(body):
-	camera_2d.enabled = false
 	z_index = 0

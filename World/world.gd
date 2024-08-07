@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var rooms = %Rooms
+@onready var camera = $Camera
 var dungeon_layout = DungeonGenerator.map
 var possible_rooms = [preload("res://World/room_template.tscn")]
 var room_size = Vector2(144+8, 80+8)
@@ -13,6 +14,9 @@ func _ready():
 			if dungeon_layout[y][x] ==1:
 				await _spawn_room(Vector2(x, y))
 	_spawn_palyer()
+
+func _move_camera(new_pos : Vector2):
+	camera.global_position = new_pos
 
 func _spawn_room(room_position):
 	var new_room = possible_rooms[0].instantiate()
