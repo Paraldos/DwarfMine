@@ -3,11 +3,19 @@ extends Node2D
 @onready var rooms = %Rooms
 @onready var camera = $Camera
 @onready var dungeon_layout = DungeonGenerator.map
-var possible_rooms = [preload("res://World/room_template.tscn")]
-var room_size = Vector2(144+8, 80+8)
+var player_template = preload("res://player/player.tscn")
+var possible_rooms = [
+	preload("res://World/room_template.tscn"),
+	preload("res://World/rooms/room_001.tscn"),
+	preload("res://World/rooms/room_002.tscn")
+	]
+var room_size = Vector2(144, 80)
 var start_room = null
+var player = null
 
 func _ready():
+	for room in possible_rooms:
+		print(room.openings)
 	start_room = _spawn_room(DungeonGenerator.start_position)
 	for y in dungeon_layout.size():
 		for x in dungeon_layout[y].size():
@@ -32,5 +40,5 @@ func _spawn_room(room_position):
 	return new_room
 
 func _spawn_player():
+	player = player_template.instantiate()
 	start_room._spawn_player()
-

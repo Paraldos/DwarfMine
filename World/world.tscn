@@ -23,4 +23,4 @@ color = Color(0.129412, 0.129412, 0.129412, 1)
 unique_name_in_owner = true
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(0.3, 0.3)
+anchor_mode = 0

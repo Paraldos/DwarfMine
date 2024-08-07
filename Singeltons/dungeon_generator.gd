@@ -6,7 +6,7 @@ var directions = [
 	Vector2(0, -1),
 	Vector2(1, 0),
 ]
-var unused_direcionts = []
+var unused_directions = []
 var map_size = Vector2(10, 10)
 var map = []
 var rng = RandomNumberGenerator.new()
@@ -93,10 +93,10 @@ func _print_map():
 
 # ========================================================== Helper functions
 func _get_favorite_direction():
-	if unused_direcionts.size() == 0:
-		unused_direcionts = directions
-	unused_direcionts.shuffle()
-	return unused_direcionts[0]
+	if unused_directions.size() == 0:
+		unused_directions = directions
+	unused_directions.shuffle()
+	return unused_directions[0]
 
 func _get_valid_neighbour(current_room):
 	var neighbours = []
