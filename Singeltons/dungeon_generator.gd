@@ -26,6 +26,7 @@ func _generate_map():
 	_define_start_room()
 	for branch in branches:
 		_fill_dungeon_with_rooms()
+	_clean_up_map()
 	_print_map()
 
 func _empty_map():
@@ -60,6 +61,24 @@ func _fill_dungeon_with_rooms():
 			rooms.append(next_room)
 			current_room = next_room
 			placed_rooms += 1
+
+func _clean_up_map():
+	# Remove empty rows
+	for i in map_size.y:
+		var row = map_size.y -1 - i
+		var row_is_not_empty = map[row].has(1) or map[row].has(2)
+		if !row_is_not_empty:
+			map.pop_at(row)
+	# Remove empty columns
+	for i in map_size.x:
+		var column = map_size.x -1 - i
+		var column_is_empty = true
+		for row in map.size():
+			if map[row][column] != 0:
+				column_is_empty = false
+		if column_is_empty:
+			for row in map.size():
+				map[row].pop_at(column)
 
 func _print_map():
 	for i in map:
