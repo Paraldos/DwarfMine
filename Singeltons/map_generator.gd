@@ -1,11 +1,5 @@
 extends Node2D
 
-var directions = [
-	Vector2(0, 1),
-	Vector2(-1, 0),
-	Vector2(0, -1),
-	Vector2(1, 0),
-]
 var unused_directions = []
 var map_size = Vector2(10, 10)
 var map = []
@@ -94,7 +88,7 @@ func _print_map():
 # ========================================================== Helper functions
 func _get_favorite_direction():
 	if unused_directions.size() == 0:
-		unused_directions = directions
+		unused_directions = Utils.directions
 	unused_directions.shuffle()
 	return unused_directions[0]
 
@@ -112,4 +106,21 @@ func _get_valid_neighbour(current_room):
 		if neighbour.x >= 0 and neighbour.x < map_size.x and neighbour.y >= 0 and neighbour.y < map_size.y:
 			if map[neighbour.y][neighbour.x] == 0:
 				neighbours.append(neighbour)
+	return neighbours
+
+func _get_neighbours(pos):
+	var neighbours = {
+		"top": Vector2(0, -1),
+		"right": Vector2(1, 0),
+		"bottom": Vector2(0, 1),
+		"left": Vector2(-1, 0),
+	}
+	for neighbour in neighbours.keys():
+		var neighbor_pos = pos + neighbours[neighbour]
+		neighbours[neighbour] = false
+		if neighbor_pos.y < 0 or neighbor_pos.y >= map.size():
+			continue
+		if neighbor_pos.x < 0 or neighbor_pos.x >= map[0].size():
+			continue
+		neighbours[neighbour] = map[neighbor_pos.y][neighbor_pos.x] != 0
 	return neighbours

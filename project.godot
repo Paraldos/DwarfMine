@@ -20,7 +20,8 @@ config/icon="res://icon.svg"
 Utils="*res://Singeltons/utils.tscn"
 LootGenerator="*res://Singeltons/loot_generator.gd"
 InventoryController="*res://Singeltons/inventory_controller.gd"
-DungeonGenerator="*res://Singeltons/dungeon_generator.gd"
+RoomLoader="*res://Singeltons/room_loader.gd"
+MapGenerator="*res://Singeltons/map_generator.gd"
 
 [display]
 
