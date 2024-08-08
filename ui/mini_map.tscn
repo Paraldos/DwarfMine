@@ -6,7 +6,6 @@
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qch67"]
 texture = ExtResource("2_7n8rj")
-texture_region_size = Vector2i(5, 5)
 use_texture_padding = false
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -90,7 +89,6 @@ use_texture_padding = false
 3:3/0/terrain = 0
 
 [sub_resource type="TileSet" id="TileSet_lmk6s"]
-tile_size = Vector2i(5, 5)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "map"
 terrain_set_0/terrain_0/color = Color(0.45597, 0.456448, 1, 1)
@@ -101,7 +99,6 @@ offset_left = 4.0
 offset_top = 4.0
 offset_right = 52.0
 offset_bottom = 52.0
-scale = Vector2(0.4, 0.4)
 theme = ExtResource("1_mrngg")
 script = ExtResource("2_tcndp")
 
@@ -113,7 +110,6 @@ scale = Vector2(1, 1)
 unique_name_in_owner = true
 scale = Vector2(1, 1)
 tile_set = SubResource("TileSet_lmk6s")
-rendering_quadrant_size = 5
 format = 2
 
 [node name="PlayerPosition" type="Marker2D" parent="Node2D"]
