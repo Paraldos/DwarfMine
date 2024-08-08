@@ -1,5 +1,6 @@
 extends Node
 
+var rng = RandomNumberGenerator.new()
 var rooms = {
 	"bottom": [
 		preload("res://world/rooms/bottom.tscn"),
@@ -15,6 +16,9 @@ var rooms = {
 	],
 	"right_bottom": [
 		preload("res://world/rooms/right_bottom.tscn"),
+	],
+	"right_bottom_left": [
+		preload("res://world/rooms/right_bottom_left.tscn"),
 	],
 	"right_left": [
 		preload("res://world/rooms/right_left.tscn"),
@@ -61,4 +65,5 @@ func _get_room(top = false, right = false, bottom = false, left = false):
 		if room_name != "":
 			room_name += "_"
 		room_name += "left"
-	return rooms[room_name]
+	rng.randomize()
+	return rooms[room_name][rng.randi_range(0, rooms[room_name].size() - 1)]

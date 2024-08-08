@@ -1,16 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl03yhkd368jy"]
+[gd_scene load_steps=4 format=3 uid="uid://bl03yhkd368jy"]
 
 [ext_resource type="Script" path="res://World/room_template.gd" id="1_4rupf"]
 [ext_resource type="PackedScene" uid="uid://bq528jtxyk2wr" path="res://World/Tilemap/tile_map.tscn" id="1_xchy2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1efq"]
 size = Vector2(144, 80)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_gkqpm"]
-b = Vector2(144, 0)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_auyow"]
-b = Vector2(0, 80)
 
 [node name="RoomTemplate" type="Node2D"]
 script = ExtResource("1_4rupf")
@@ -42,26 +36,5 @@ unique_name_in_owner = true
 
 [node name="Front" type="Node2D" parent="."]
 unique_name_in_owner = true
-
-[node name="Borders" type="StaticBody2D" parent="."]
-visible = false
-
-[node name="Top" type="CollisionShape2D" parent="Borders"]
-unique_name_in_owner = true
-shape = SubResource("SegmentShape2D_gkqpm")
-
-[node name="Right" type="CollisionShape2D" parent="Borders"]
-unique_name_in_owner = true
-position = Vector2(144, 0)
-shape = SubResource("SegmentShape2D_auyow")
-
-[node name="Bottom" type="CollisionShape2D" parent="Borders"]
-unique_name_in_owner = true
-position = Vector2(0, 80)
-shape = SubResource("SegmentShape2D_gkqpm")
-
-[node name="Left" type="CollisionShape2D" parent="Borders"]
-unique_name_in_owner = true
-shape = SubResource("SegmentShape2D_auyow")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

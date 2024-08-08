@@ -15,6 +15,7 @@ func _ready():
 			if map[y][x] == 1:
 				await _spawn_room(Vector2(x, y))
 	_spawn_player()
+	print(MapGenerator._get_neighbours(MapGenerator.start_position))
 
 func _move_camera(new_pos : Vector2, tween_position = true):
 	if tween_position:
@@ -24,16 +25,15 @@ func _move_camera(new_pos : Vector2, tween_position = true):
 		camera.global_position = new_pos
 
 func _spawn_room(room_position):
-	MapGenerator._get_neighbours(room_position)
-
-	return
-	# var new_room = possible_rooms[0].instantiate()
-	# new_room.global_position = Vector2(
-	# 	room_position.x * room_size.x, 
-	# 	room_position.y * room_size.y)
-	# new_room.world = self
-	# rooms.add_child(new_room)
-	# return new_room
+	var neighbors = MapGenerator._get_neighbours(room_position)
+	var room = RoomLoader._get_room(neighbors.top, neighbors.right, neighbors.bottom, neighbors.left)
+	var new_room = room.instantiate()
+	new_room.global_position = Vector2(
+		room_position.x * room_size.x, 
+		room_position.y * room_size.y)
+	new_room.world = self
+	rooms.add_child(new_room)
+	return new_room
 
 func _spawn_player():
 	player = player_template.instantiate()
