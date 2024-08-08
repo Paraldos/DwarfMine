@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgdh7qleifsav"]
+[gd_scene load_steps=3 format=3 uid="uid://bgdh7qleifsav"]
 
 [ext_resource type="PackedScene" uid="uid://coob8ofx0jyrj" path="res://ui/ui_set_controller.tscn" id="1_dp8gk"]
+[ext_resource type="PackedScene" uid="uid://cpra6p1qsgy1a" path="res://ui/mini_map.tscn" id="2_ayp1f"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -13,3 +14,5 @@ offset_top = 4.0
 offset_right = 0.0
 offset_bottom = 20.0
 grow_horizontal = 0
+
+[node name="MiniMap" parent="." instance=ExtResource("2_ayp1f")]

@@ -19,7 +19,7 @@ func _generate_map():
 	_define_start_position()
 	for branch in branches:
 		_fill_dungeon_with_rooms()
-	_clean_up_map()
+	# _clean_up_map()
 	_get_new_start_position()
 	_print_map()
 

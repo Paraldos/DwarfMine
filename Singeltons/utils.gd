@@ -1,5 +1,9 @@
 extends Node
 
+signal build_mini_map
+signal update_mini_map(player_position)
+
+var room_size = Vector2(144, 80)
 var player = null
 var interactables = []
 var directions = [
