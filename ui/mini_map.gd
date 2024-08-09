@@ -13,9 +13,11 @@ func _build_mini_map():
 	for column in map.size():
 		for row in map[column].size():
 			var cell = Vector2(column, row)
-			if map[row][column] != 0:
-				tile_map.set_cells_terrain_connect(0, [cell], 0, 0, map[row][column] != 0)
+			if map[column][row] != 0:
+				tile_map.set_cells_terrain_connect(0, [cell], 0, 0, true)
+			else:
+				tile_map.set_cells_terrain_connect(0, [cell], 0, -1, true)
 
 func _update_mini_map(new_player_position):
-	player_position.position.x = (new_player_position.x / Utils.room_size.x) * 5
-	player_position.position.y = (new_player_position.y / Utils.room_size.y) * 5
+	player_position.position.x = (new_player_position.x / Utils.room_size.x) * 8
+	player_position.position.y = (new_player_position.y / Utils.room_size.y) * 8
