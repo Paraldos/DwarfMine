@@ -13,7 +13,7 @@ func _build_mini_map():
 	for column in map.size():
 		for row in map[column].size():
 			var cell = Vector2(column, row)
-			if map[column][row] != 0:
+			if map[row][column] != 0:
 				tile_map.set_cells_terrain_connect(0, [cell], 0, 0, true)
 			else:
 				tile_map.set_cells_terrain_connect(0, [cell], 0, -1, true)
