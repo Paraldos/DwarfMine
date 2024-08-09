@@ -26,7 +26,7 @@ var neighbors = {
 	}
 }
 
-func _init(Type = 0, Cell = Vector2.ZERO, Map = []):
+func _init(Type = 0, Cell = Vector2.ZERO):
 	type = Type
 	cell = Cell
 	_init_neighbors_cells()
@@ -38,27 +38,30 @@ func _init_neighbors_cells():
 	neighbors.bottom.cell = cell + Vector2(0, 1)
 	neighbors.left.cell = cell + Vector2(-1, 0)
 
-func _get_next_room():
+func _get_position_of_next_room():
 	var possible_directions = []
 	#if cell.y > 0 and not neighbors.top:
 	#    possible_directions.append(["top", neighbors_cells.top])
-	if cell.y < MapGenerator.map_size.y - 1 and not neighbors.bottom.occupied:
+	if cell.y < MapGenerator.map_size.y - 1 and !neighbors.bottom.occupied:
 		possible_directions.append(["bottom", neighbors.bottom.cell])
-	if cell.x < MapGenerator.map_size.x - 1 and not neighbors.rightoccupied:
+	if cell.x < MapGenerator.map_size.x - 1 and !neighbors.right.occupied:
 		for i in range(2):
 			possible_directions.append(["right", neighbors.right.cell])
-	if cell.x > 0 and not neighbors.leftoccupied:
+	if cell.x > 0 and not neighbors.left.occupied:
 		for i in range(2):
 			possible_directions.append(["left", neighbors.left.cell])
 	possible_directions.shuffle()
-	neighbors[possible_directions[0][0]].occupied = true
-	return possible_directions[0]
+	if possible_directions.size() == 0:
+		return false
+	else:
+		neighbors[possible_directions[0][0]].occupied = true
+		return possible_directions[0][1]
 
 func _on_room__update_neighbours(map):
 	# top / bottom
 	if neighbors.top.cell.y >= 0 and neighbors.bottom.cell.y <= map.size():
 		neighbors.top.occupied = map[neighbors.top.cell.y][neighbors.top.cell.x] != 0
-		neighbors.bottom = map[neighbors.bottom.cell.y][neighbors.bottom.cell.x] != 0
+		neighbors.bottom.occupied = map[neighbors.bottom.cell.y][neighbors.bottom.cell.x] != 0
 	# left / right
 	if neighbors.left.cell.x >= 0 and neighbors.right.cell.x <= map[0].size():
 		neighbors.left.occupied = map[neighbors.left.cell.y][neighbors.left.cell.x] != 0

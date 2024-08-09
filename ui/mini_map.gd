@@ -5,10 +5,11 @@ extends PanelContainer
 var map = null
 
 func _ready():
-	Utils.build_mini_map.connect(_build_mini_map)
-	Utils.update_mini_map.connect(_update_mini_map)
+	Utils.mini_map__create.connect(_on_mini_map__create)
+	Utils.mini_map__update.connect(_on_mini_map__update)
 
-func _build_mini_map():
+func _on_mini_map__create():
+	await get_tree().create_timer(0.1, false).timeout
 	map = MapGenerator.map
 	for column in map.size():
 		for row in map[column].size():
@@ -18,6 +19,6 @@ func _build_mini_map():
 			else:
 				tile_map.set_cells_terrain_connect(0, [cell], 0, -1, true)
 
-func _update_mini_map(new_player_position):
+func _on_mini_map__update(new_player_position):
 	player_position.position.x = (new_player_position.x / Utils.room_size.x) * 8
 	player_position.position.y = (new_player_position.y / Utils.room_size.y) * 8

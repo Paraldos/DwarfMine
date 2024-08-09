@@ -15,7 +15,7 @@ func _ready():
 			if map[y][x] == 1:
 				await _spawn_room(Vector2(x, y))
 	_spawn_player()
-	Utils.build_mini_map.emit()
+	Utils.mini_map__create.emit()
 	print(MapGenerator._get_neighbours(MapGenerator.start_position))
 
 func _move_camera(new_pos : Vector2, tween_position = true):
@@ -24,7 +24,7 @@ func _move_camera(new_pos : Vector2, tween_position = true):
 		tween.tween_property(camera, "global_position", new_pos, 0.3)
 	else:
 		camera.global_position = new_pos
-	Utils.update_mini_map.emit(new_pos)
+	Utils.mini_map__update.emit(new_pos)
 
 func _spawn_room(room_position):
 	var neighbors = MapGenerator._get_neighbours(room_position)
