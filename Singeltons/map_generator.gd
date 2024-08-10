@@ -29,10 +29,6 @@ func _define_start_position():
 	_add_room(Vector2(map_size.x / 2, 0), 2)
 	start_position = Vector2(map_size.x / 2, 0)
 
-func _add_room(cell, type):
-	map[cell.y][cell.x] = type
-	rooms.append(Room.new(type, cell))
-
 func _fill_dungeon_with_rooms():
 	var current_cell = start_position
 	while rooms.size() < max_number_of_rooms:
@@ -43,6 +39,8 @@ func _fill_dungeon_with_rooms():
 		else:
 			valid_directions.shuffle()
 			_add_room(valid_directions[0], 1)
+	current_cell = rooms[-1].cell
+	_change_room_type(current_cell, 3)
 
 func _print_map():
 	for i in map:
@@ -50,6 +48,16 @@ func _print_map():
 	print("Rooms: ", rooms.size())
 
 # ========================================================== Helper functions
+func _add_room(cell, type):
+	map[cell.y][cell.x] = type
+	rooms.append(Room.new(type, cell))
+
+func _change_room_type(cell, type):
+	map[cell.y][cell.x] = type
+	for room in rooms:
+		if room.cell == cell:
+			room.type = type
+
 func _get_valid_directions(current_pos):
 	var valid_directions = []
 	var neighbors = [

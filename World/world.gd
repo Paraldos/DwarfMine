@@ -12,11 +12,10 @@ func _ready():
 	start_room = _spawn_room(MapGenerator.start_position)
 	for y in map.size():
 		for x in map[y].size():
-			if map[y][x] == 1:
+			if map[y][x] == 1 or map[y][x] == 3:
 				await _spawn_room(Vector2(x, y))
 	_spawn_player()
 	Utils.mini_map__create.emit()
-	print(MapGenerator._get_neighbours(MapGenerator.start_position))
 
 func _move_camera(new_pos : Vector2, tween_position = true):
 	if tween_position:
