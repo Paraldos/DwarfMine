@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://kohth56j1tb8"]
+[gd_scene load_steps=52 format=3 uid="uid://kohth56j1tb8"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3xeo1"]
 [ext_resource type="Script" path="res://components/OpenInventory.gd" id="2_76jhg"]
@@ -15,7 +15,12 @@
 [ext_resource type="Script" path="res://player/States/Bow.gd" id="9_4c03b"]
 [ext_resource type="Texture2D" uid="uid://dflt5cqryt3vh" path="res://assets/images/Player/Jump-Sheet.png" id="9_223dg"]
 [ext_resource type="Texture2D" uid="uid://b4ripyl6bute3" path="res://assets/images/Player/Bow-Sheet.png" id="10_dxcxi"]
+[ext_resource type="Texture2D" uid="uid://dlii2bm3weljk" path="res://assets/images/Player/Climbing-Sheet.png" id="10_l6m3t"]
 [ext_resource type="Texture2D" uid="uid://b18bovheusgqa" path="res://assets/images/Player/Axe-Sheet.png" id="11_n6oio"]
+[ext_resource type="Script" path="res://player/States/Climbing.gd" id="18_pv0jj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_461e7"]
+radius = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ohhtx"]
 size = Vector2(6, 6)
@@ -273,11 +278,41 @@ tracks/5/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PlayerSprite/Climbing:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vx2ci"]
+resource_name = "Climbing"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite/Climbing:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 4]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_73ydo"]
 _data = {
 "Axe": SubResource("Animation_b4emf"),
 "Bow": SubResource("Animation_3xten"),
+"Climbing": SubResource("Animation_vx2ci"),
 "Idle": SubResource("Animation_pdlma"),
 "Jump_down": SubResource("Animation_0tob2"),
 "Jump_middle": SubResource("Animation_i1b5q"),
@@ -291,6 +326,9 @@ animation = &"Axe"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qjemn"]
 animation = &"Bow"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xbri8"]
+animation = &"Climbing"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1uv24"]
 animation = &"Idle"
@@ -338,24 +376,38 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cgq3w"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4p2et"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hi5an"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iem07"]
 states/Axe/node = SubResource("AnimationNodeAnimation_5pu04")
 states/Axe/position = Vector2(296, 214)
 states/Bow/node = SubResource("AnimationNodeAnimation_qjemn")
 states/Bow/position = Vector2(449, 214)
+states/Climbing/node = SubResource("AnimationNodeAnimation_xbri8")
+states/Climbing/position = Vector2(485, -19)
 states/Idle/node = SubResource("AnimationNodeAnimation_1uv24")
 states/Idle/position = Vector2(362, 97)
 states/Jump/node = SubResource("AnimationNodeBlendSpace1D_6y8hk")
-states/Jump/position = Vector2(362, 7)
+states/Jump/position = Vector2(309, -19)
 states/Move/node = SubResource("AnimationNodeAnimation_orqab")
 states/Move/position = Vector2(485, 97)
 states/Start/position = Vector2(253, 97)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_280ma"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_tq7t5"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_0e8tj"), "Idle", "Axe", SubResource("AnimationNodeStateMachineTransition_j0ff0"), "Axe", "Idle", SubResource("AnimationNodeStateMachineTransition_1ylva"), "Bow", "Idle", SubResource("AnimationNodeStateMachineTransition_n1c3y"), "Idle", "Bow", SubResource("AnimationNodeStateMachineTransition_cgq3w")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gjdss"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_280ma"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_qgsac"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_tq7t5"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_0e8tj"), "Idle", "Axe", SubResource("AnimationNodeStateMachineTransition_j0ff0"), "Axe", "Idle", SubResource("AnimationNodeStateMachineTransition_1ylva"), "Bow", "Idle", SubResource("AnimationNodeStateMachineTransition_n1c3y"), "Idle", "Bow", SubResource("AnimationNodeStateMachineTransition_cgq3w"), "Idle", "Climbing", SubResource("AnimationNodeStateMachineTransition_4p2et"), "Climbing", "Idle", SubResource("AnimationNodeStateMachineTransition_hi5an")]
 graph_offset = Vector2(-22, -63.1428)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_3xeo1")
+
+[node name="LadderScanner" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LadderScanner"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_461e7")
 
 [node name="OpenInventory" type="Node" parent="."]
 script = ExtResource("2_76jhg")
@@ -394,6 +446,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/Jump/blend_position = -0.998143
 
 [node name="Idle" type="Sprite2D" parent="PlayerSprite"]
+visible = false
 texture = ExtResource("7_dqpt0")
 
 [node name="Move" type="Sprite2D" parent="PlayerSprite"]
@@ -417,9 +470,9 @@ visible = false
 texture = ExtResource("11_n6oio")
 hframes = 5
 
-[node name="Polygon2D" type="Polygon2D" parent="PlayerSprite"]
-visible = false
-polygon = PackedVector2Array(-3, -2, -3, 4, 3, 4, 3, -2)
+[node name="Climbing" type="Sprite2D" parent="PlayerSprite"]
+texture = ExtResource("10_l6m3t")
+hframes = 5
 
 [node name="Muzzle" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -447,7 +500,7 @@ text = "State: "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "idle_state", "move_state", "jump_state", "axe_state", "bow_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "idle_state", "move_state", "jump_state", "axe_state", "bow_state", "climbing_state", "climbing_idle_state")]
 script = ExtResource("3_j7651")
 current_state = NodePath("Idle")
 idle_state = NodePath("Idle")
@@ -455,6 +508,8 @@ move_state = NodePath("Move")
 jump_state = NodePath("Jump")
 axe_state = NodePath("Axe")
 bow_state = NodePath("Bow")
+climbing_state = NodePath("Climbing")
+climbing_idle_state = NodePath("")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_obcsm")
@@ -479,6 +534,9 @@ script = ExtResource("9_4c03b")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
 muzzle = NodePath("../../Muzzle/Bow")
+
+[node name="Climbing" type="Node" parent="StateMachine"]
+script = ExtResource("18_pv0jj")
 
 [connection signal="attack_animation_finished" from="PlayerSprite" to="StateMachine/Axe" method="_on_player_sprite_attack_animation_finished"]
 [connection signal="attack_animation_finished" from="PlayerSprite" to="StateMachine/Bow" method="_on_player_sprite_attack_animation_finished"]

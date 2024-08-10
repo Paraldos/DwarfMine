@@ -8,6 +8,8 @@ func _state_physics_process(delta):
 	charackter.velocity.x = direction * charackter.SPEED
 	if direction == 0:
 		state_machine._change_state("idle")
+	if Input.is_action_just_pressed("ui_up") and charackter.ladder_scanner.get_overlapping_areas():
+		state_machine._change_state("climbing")
 	if Input.is_action_just_pressed("jump") and (charackter.is_on_floor() or !coyote_timer.is_stopped()):
 		charackter.velocity.y = charackter.JUMP_POWER
 		state_machine._change_state("jump")

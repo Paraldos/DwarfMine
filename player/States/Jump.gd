@@ -10,4 +10,6 @@ func _state_physics_process(delta):
 			state_machine._change_state("idle")
 	if Input.is_action_just_pressed("attack"):
 		state_machine._change_state("attack")
+	if Input.is_action_just_pressed("ui_up") and charackter.ladder_scanner.get_overlapping_areas():
+		state_machine._change_state("climbing")
 	charackter._gravity(delta)

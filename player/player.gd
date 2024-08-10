@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var JUMP_POWER = -140.0
 @onready var state_machine = $StateMachine
 @onready var player_sprite = %PlayerSprite
+@onready var ladder_scanner = $LadderScanner
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_left = false
 
