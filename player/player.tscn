@@ -500,7 +500,7 @@ text = "State: "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "idle_state", "move_state", "jump_state", "axe_state", "bow_state", "climbing_state", "climbing_idle_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "idle_state", "move_state", "jump_state", "axe_state", "bow_state", "climbing_state")]
 script = ExtResource("3_j7651")
 current_state = NodePath("Idle")
 idle_state = NodePath("Idle")
@@ -509,7 +509,6 @@ jump_state = NodePath("Jump")
 axe_state = NodePath("Axe")
 bow_state = NodePath("Bow")
 climbing_state = NodePath("Climbing")
-climbing_idle_state = NodePath("")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_obcsm")

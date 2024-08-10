@@ -15,4 +15,5 @@ func _state_physics_process(delta):
 			else:
 				state_machine._change_state("idle")
 		else:
+			charackter.velocity.y = 0
 			state_machine._change_state("jump")
