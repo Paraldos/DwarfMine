@@ -1,19 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl03yhkd368jy"]
+[gd_scene load_steps=5 format=3 uid="uid://bl03yhkd368jy"]
 
 [ext_resource type="Script" path="res://World/room_template.gd" id="1_4rupf"]
 [ext_resource type="PackedScene" uid="uid://bq528jtxyk2wr" path="res://World/Tilemap/tile_map.tscn" id="1_xchy2"]
-[ext_resource type="Texture2D" uid="uid://bw3xgf5wurmrx" path="res://assets/images/Ladder.png" id="3_3v2an"]
+[ext_resource type="PackedScene" uid="uid://d4anpobfhtyei" path="res://World/Scatter/ladder.tscn" id="3_oqqvr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1efq"]
 size = Vector2(136, 72)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgtlb"]
-size = Vector2(8, 8)
 
 [node name="RoomTemplate" type="Node2D"]
 script = ExtResource("1_4rupf")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 metadata/_edit_lock_ = true
@@ -34,18 +32,17 @@ position = Vector2(32, 72)
 [node name="Back" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="Ladder" type="Area2D" parent="Back"]
-position = Vector2(52, 68)
-collision_layer = 64
-collision_mask = 0
+[node name="Ladder" parent="Back" instance=ExtResource("3_oqqvr")]
+offset_left = 48.0
+offset_top = 40.0
+offset_right = 56.0
+offset_bottom = 72.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Back/Ladder"]
-shape = SubResource("RectangleShape2D_pgtlb")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Back/Ladder"]
-texture = ExtResource("3_3v2an")
-metadata/_edit_lock_ = true
+[node name="Ladder2" parent="Back" instance=ExtResource("3_oqqvr")]
+offset_left = 88.0
+offset_top = 56.0
+offset_right = 96.0
+offset_bottom = 72.0
 
 [node name="Middle" type="Node2D" parent="."]
 unique_name_in_owner = true

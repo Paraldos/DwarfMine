@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4anpobfhtyei"]
+
+[ext_resource type="Texture2D" uid="uid://bw3xgf5wurmrx" path="res://assets/images/Ladder.png" id="1_ukapn"]
+[ext_resource type="Script" path="res://World/Scatter/ladder.gd" id="2_bor61"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsu2p"]
+size = Vector2(8, 24)
+
+[node name="Ladder" type="TextureRect"]
+offset_right = 8.0
+offset_bottom = 24.0
+texture = ExtResource("1_ukapn")
+stretch_mode = 1
+script = ExtResource("2_bor61")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, 12)
+shape = SubResource("RectangleShape2D_xsu2p")
+metadata/_edit_lock_ = true
