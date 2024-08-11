@@ -5,4 +5,4 @@ extends TextureRect
 func _ready():
 	collision_shape_2d.shape = collision_shape_2d.shape.duplicate()
 	collision_shape_2d.position = size /2
-	collision_shape_2d.shape.size = size
+	collision_shape_2d.shape.size.y = size.y

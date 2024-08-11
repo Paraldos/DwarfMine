@@ -19,11 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://b18bovheusgqa" path="res://assets/images/Player/Axe-Sheet.png" id="11_n6oio"]
 [ext_resource type="Script" path="res://player/States/Climbing.gd" id="18_pv0jj"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_461e7"]
-radius = 3.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ohhtx"]
 size = Vector2(6, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_461e7"]
+radius = 3.0
 
 [sub_resource type="Animation" id="Animation_b4emf"]
 resource_name = "Axe"
@@ -401,6 +401,10 @@ graph_offset = Vector2(-22, -63.1428)
 collision_layer = 2
 script = ExtResource("1_3xeo1")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_ohhtx")
+
 [node name="LadderScanner" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 64
@@ -411,10 +415,6 @@ shape = SubResource("CircleShape2D_461e7")
 
 [node name="OpenInventory" type="Node" parent="."]
 script = ExtResource("2_76jhg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
-shape = SubResource("RectangleShape2D_ohhtx")
 
 [node name="Hitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
