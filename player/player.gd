@@ -14,7 +14,7 @@ func _ready():
 
 func _physics_process(delta):
 	state_machine._state_physics_process(delta)
-	facing_left = player_sprite._set_direction(velocity, delta)
+	facing_left = player_sprite._set_direction(velocity, state_machine.current_state.name)
 	move_and_slide()
 	if Input.is_action_just_pressed("switch_set"):
 		InventoryController._switch_set()

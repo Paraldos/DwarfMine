@@ -22,4 +22,5 @@ func _state_physics_process(delta):
 		if coyote_timer.is_stopped():
 			state_machine._change_state("jump")
 	was_on_floor = charackter.is_on_floor()
-	charackter._gravity(delta)
+	if !charackter.ladder_scanner.get_overlapping_areas():
+		charackter._gravity(delta)
