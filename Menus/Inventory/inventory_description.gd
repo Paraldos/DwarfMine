@@ -114,5 +114,3 @@ func _add_selected_armor_differenz(armor_type, newLabel):
 			newLabel.modulate = Color("#00ff00")
 		elif differenz < 0:
 			newLabel.modulate = Color("#ff0000")
-
-
