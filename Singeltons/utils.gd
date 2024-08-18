@@ -1,8 +1,10 @@
 extends Node
 
-signal mini_map__create()
+signal mini_map__create
 signal mini_map__update(player_position)
 signal room__update_neighbours(map)
+signal on_ladder
+signal off_ladder
 
 var room_size = Vector2(144, 80)
 var player = null
