@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4anpobfhtyei"]
+[gd_scene load_steps=6 format=3 uid="uid://d4anpobfhtyei"]
 
 [ext_resource type="Texture2D" uid="uid://bw3xgf5wurmrx" path="res://assets/images/Ladder.png" id="1_ukapn"]
 [ext_resource type="Script" path="res://World/Scatter/ladder.gd" id="2_bor61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsu2p"]
-size = Vector2(2, 26)
+size = Vector2(2, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owlx2"]
+size = Vector2(4, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c00a"]
 size = Vector2(6, 1)
@@ -16,18 +19,27 @@ texture = ExtResource("1_ukapn")
 stretch_mode = 1
 script = ExtResource("2_bor61")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="AreaLadder" type="Area2D" parent="."]
 collision_layer = 64
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(4, 12)
+[node name="CollisionShapeLadder" type="CollisionShape2D" parent="AreaLadder"]
+unique_name_in_owner = true
+position = Vector2(4, 12.5)
 shape = SubResource("RectangleShape2D_xsu2p")
 metadata/_edit_lock_ = true
 
+[node name="AreaTop" type="Area2D" parent="."]
+
+[node name="CollisionShapeTop" type="CollisionShape2D" parent="AreaTop"]
+unique_name_in_owner = true
+position = Vector2(4, -2)
+shape = SubResource("RectangleShape2D_owlx2")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShapeBody" type="CollisionShape2D" parent="StaticBody2D"]
+unique_name_in_owner = true
 position = Vector2(4, 0.5)
 shape = SubResource("RectangleShape2D_4c00a")
 one_way_collision = true

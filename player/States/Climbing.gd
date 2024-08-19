@@ -3,7 +3,7 @@ extends State
 func _state_physics_process(delta):
 	var x_direction = Input.get_axis("ui_left", "ui_right")
 	var y_direction = Input.get_axis("ui_up", "ui_down")
-	charackter.velocity.x = (x_direction * charackter.SPEED) * 0.25
+	charackter.velocity.x = (x_direction * charackter.SPEED) * 0.5
 	charackter.velocity.y = (y_direction * charackter.SPEED) * 0.5
 	if Input.is_action_just_pressed("jump"):
 		charackter.velocity.y = charackter.JUMP_POWER
@@ -20,6 +20,8 @@ func _state_physics_process(delta):
 
 func _enter() -> void:
 	super._enter()
+	Utils.ladder__disable_top.emit(true)
 
 func exit() -> void:
 	super.exit()
+	Utils.ladder__disable_top.emit(false)
