@@ -407,7 +407,7 @@ shape = SubResource("RectangleShape2D_ohhtx")
 
 [node name="LadderScanner" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 64
+collision_mask = 192
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LadderScanner"]
 position = Vector2(0, -3)
@@ -523,6 +523,11 @@ one_shot = true
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("5_trryc")
+
+[node name="LadderTimer" type="Timer" parent="StateMachine/Jump"]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
 
 [node name="Axe" type="Node" parent="StateMachine" node_paths=PackedStringArray("hitbox")]
 script = ExtResource("7_jqu64")

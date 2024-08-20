@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2gohxawehw66"]
+[gd_scene load_steps=3 format=3 uid="uid://b2gohxawehw66"]
 
 [ext_resource type="PackedScene" uid="uid://bl03yhkd368jy" path="res://World/room_template.tscn" id="1_q4trc"]
+[ext_resource type="PackedScene" uid="uid://d4anpobfhtyei" path="res://World/Scatter/ladder.tscn" id="2_5o7qm"]
 
 [node name="TopRight" instance=ExtResource("1_q4trc")]
 
@@ -9,3 +10,9 @@ layer_0/tile_data = PackedInt32Array(589824, 65536, 1, 524288, 65536, 1, 458752,
 
 [node name="PlayerPositionMarker" parent="." index="2"]
 position = Vector2(64, 40)
+
+[node name="Ladder" parent="Back" index="0" instance=ExtResource("2_5o7qm")]
+offset_left = 68.0
+offset_top = -8.0
+offset_right = 76.0
+offset_bottom = 32.0

@@ -15,9 +15,9 @@ func _state_physics_process(delta):
 	if not charackter.is_on_floor():
 		state_machine._change_state("jump")
 
-	if Input.is_action_pressed("ui_up") and charackter.ladder_scanner.get_overlapping_areas():
+	if Input.is_action_pressed("ui_up") and charackter.ladder_scanner.get_overlapping_areas() and charackter.ladder_scanner.get_overlapping_areas()[0].name == "AreaLadder":
 		state_machine._change_state("climbing")
-	if Input.is_action_just_pressed("ui_down") and charackter.ladder_scanner.get_overlapping_areas():
+	if Input.is_action_just_pressed("ui_down") and charackter.ladder_scanner.get_overlapping_areas() and charackter.ladder_scanner.get_overlapping_areas()[0].name == "AreaTop":
 		state_machine._change_state("climbing")
 
 	charackter._gravity(delta)
