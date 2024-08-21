@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://73sdn4m108er"]
+
+[ext_resource type="Texture2D" uid="uid://bxh8n44vyrocj" path="res://assets/images/Portal-Sheet.png" id="1_86a8b"]
+
+[sub_resource type="Animation" id="Animation_0jact"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2r0wy"]
+resource_name = "loop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ox2h3"]
+_data = {
+"RESET": SubResource("Animation_0jact"),
+"loop": SubResource("Animation_2r0wy")
+}
+
+[node name="Portal" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ox2h3")
+}
+autoplay = "loop"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_86a8b")
+hframes = 9
