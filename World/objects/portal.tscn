@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://73sdn4m108er"]
+[gd_scene load_steps=6 format=3 uid="uid://73sdn4m108er"]
 
 [ext_resource type="Texture2D" uid="uid://bxh8n44vyrocj" path="res://assets/images/Portal-Sheet.png" id="1_86a8b"]
+[ext_resource type="Script" path="res://World/objects/portal.gd" id="1_ktoxs"]
 
 [sub_resource type="Animation" id="Animation_0jact"]
 length = 0.001
@@ -40,6 +41,7 @@ _data = {
 }
 
 [node name="Portal" type="Node2D"]
+script = ExtResource("1_ktoxs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -51,3 +53,12 @@ autoplay = "loop"
 position = Vector2(0, -8)
 texture = ExtResource("1_86a8b")
 hframes = 9
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-8, 0, -8, -10, -3, -15, 3, -15, 8, -10, 8, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
