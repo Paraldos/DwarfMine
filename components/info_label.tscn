@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cumnbtp4yqfnb"]
+
+[ext_resource type="Theme" uid="uid://cbu2rgcmbjxyq" path="res://Themes/Defaulttheme.tres" id="1_52yys"]
+
+[node name="InfoLabel" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -4.0
+offset_right = 20.0
+theme = ExtResource("1_52yys")
+text = "Press: A"
+horizontal_alignment = 1
