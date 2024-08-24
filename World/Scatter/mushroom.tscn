@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ygaku67xubmh"]
 
 [ext_resource type="Texture2D" uid="uid://ciw2d7rb24p1b" path="res://assets/images/Mushrooms-Sheet.png" id="1_51asy"]
-[ext_resource type="Script" path="res://World/Scatter/scatter_terrain.gd" id="1_n2bdp"]
+[ext_resource type="Script" path="res://world/Scatter/scatter_terrain.gd" id="1_n2bdp"]
 
 [node name="Mushroom" type="Node2D"]
 script = ExtResource("1_n2bdp")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bah56w811rgui"]
 
-[ext_resource type="Script" path="res://World/Pickup/pickup.gd" id="1_rpnf4"]
+[ext_resource type="Script" path="res://world/pickup/pickup.gd" id="1_rpnf4"]
 [ext_resource type="PackedScene" uid="uid://qmo42ehmat1a" path="res://components/interaction_area.tscn" id="2_0e1yx"]
 [ext_resource type="Texture2D" uid="uid://bx8aegmqcg4dw" path="res://assets/images/Hammer.png" id="2_h3qyt"]
 

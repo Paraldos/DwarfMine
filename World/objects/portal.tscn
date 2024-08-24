@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://73sdn4m108er"]
 
 [ext_resource type="Texture2D" uid="uid://bxh8n44vyrocj" path="res://assets/images/Portal-Sheet.png" id="1_86a8b"]
-[ext_resource type="Script" path="res://World/objects/portal.gd" id="1_ktoxs"]
+[ext_resource type="Script" path="res://world/Objects/portal.gd" id="1_ktoxs"]
 
 [sub_resource type="Animation" id="Animation_0jact"]
 length = 0.001

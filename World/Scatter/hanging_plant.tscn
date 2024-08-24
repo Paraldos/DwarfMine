@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://jd76tfnv4mfi"]
 
-[ext_resource type="Script" path="res://World/Scatter/scatter_terrain.gd" id="1_3g6g6"]
+[ext_resource type="Script" path="res://world/Scatter/scatter_terrain.gd" id="1_3g6g6"]
 [ext_resource type="Texture2D" uid="uid://m74yxhj5ge0x" path="res://assets/images/HangingPlant-Sheet.png" id="2_hakwp"]
 
 [node name="HangingPlant" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwcsj77fah2hx"]
 
-[ext_resource type="PackedScene" uid="uid://bl03yhkd368jy" path="res://World/room_template.tscn" id="1_kqmq8"]
+[ext_resource type="PackedScene" uid="uid://bl03yhkd368jy" path="res://world/room_template.tscn" id="1_kqmq8"]
 
 [node name="RightLeft" instance=ExtResource("1_kqmq8")]
 

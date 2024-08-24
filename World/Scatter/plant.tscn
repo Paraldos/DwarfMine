@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxrjbaukelt0x"]
 
 [ext_resource type="Texture2D" uid="uid://c0l3as4a8bh7p" path="res://assets/images/Plants-Sheet.png" id="1_scktu"]
-[ext_resource type="Script" path="res://World/Scatter/scatter_terrain.gd" id="1_smjlh"]
+[ext_resource type="Script" path="res://world/Scatter/scatter_terrain.gd" id="1_smjlh"]
 
 [node name="Plant" type="Node2D"]
 script = ExtResource("1_smjlh")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://g1s3ovphba6k"]
 
-[ext_resource type="Script" path="res://World/Pickup/coin.gd" id="1_1pgko"]
+[ext_resource type="Script" path="res://world/pickup/coin.gd" id="1_1pgko"]
 [ext_resource type="Texture2D" uid="uid://dqa5euni6cll" path="res://assets/images/Coin.png" id="2_1umej"]
 [ext_resource type="Script" path="res://components/fx_spawner.gd" id="3_cf085"]
 [ext_resource type="PackedScene" uid="uid://dd757fgylxh6o" path="res://Effects/gold_explosion_1.tscn" id="4_ui6ji"]

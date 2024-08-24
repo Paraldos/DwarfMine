@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bco5ch5kw1o3r"]
 
-[ext_resource type="PackedScene" uid="uid://bl03yhkd368jy" path="res://World/room_template.tscn" id="1_imd2y"]
-[ext_resource type="PackedScene" uid="uid://d4anpobfhtyei" path="res://World/Scatter/ladder.tscn" id="2_3nj8u"]
+[ext_resource type="PackedScene" uid="uid://bl03yhkd368jy" path="res://world/room_template.tscn" id="1_imd2y"]
+[ext_resource type="PackedScene" uid="uid://d4anpobfhtyei" path="res://world/Scatter/ladder.tscn" id="2_3nj8u"]
 
 [node name="TopBottomLeft" instance=ExtResource("1_imd2y")]
 

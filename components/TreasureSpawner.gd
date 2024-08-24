@@ -1,8 +1,8 @@
 extends Node
 class_name TreasureSpawner
 
-var pickup = preload("res://World/Pickup/pickup.tscn")
-var coin = preload("res://World/Pickup/coin.tscn")
+var pickup = preload("res://world/pickup/pickup.tscn")
+var coin = preload("res://world/pickup/coin.tscn")
 var rng = RandomNumberGenerator.new()
 
 func _spawn_treasure():
