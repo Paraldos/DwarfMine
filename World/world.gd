@@ -13,6 +13,7 @@ func _ready():
 		for x in map[y].size():
 			if map[y][x] != 0:
 				var room = _spawn_room(Vector2(x, y))
+				await get_tree().create_timer(0.05).timeout
 				if map[y][x] == 2:
 					room._spawn_player()
 				if map[y][x] == 3:
