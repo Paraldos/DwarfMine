@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://echwm6j7sqc2"
-path="res://.godot/imported/Acid-Sheet.png-cf9e7a50ea3e9e98aef6edd77fe76010.ctex"
+uid="uid://bsipgohoucpie"
+path="res://.godot/imported/liquid3.png-d6f3983e5d4ef43d568b0d6de1c3e43c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Acid-Sheet.png"
-dest_files=["res://.godot/imported/Acid-Sheet.png-cf9e7a50ea3e9e98aef6edd77fe76010.ctex"]
+source_file="res://assets/images/liquid3.png"
+dest_files=["res://.godot/imported/liquid3.png-d6f3983e5d4ef43d568b0d6de1c3e43c.ctex"]
 
 [params]
 

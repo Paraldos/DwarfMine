@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxm4wwlfm6cwn"]
+
+[ext_resource type="Texture2D" uid="uid://m25xipi06ugf" path="res://assets/images/Blocks-Sheet.png" id="1_e32s7"]
+[ext_resource type="Script" path="res://world/Scatter/scatter_floor.gd" id="1_xigic"]
+
+[node name="ScatterFloor" type="TextureRect"]
+offset_right = 32.0
+offset_bottom = 8.0
+texture = ExtResource("1_e32s7")
+stretch_mode = 1
+script = ExtResource("1_xigic")

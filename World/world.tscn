@@ -24,3 +24,12 @@ unique_name_in_owner = true
 
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
+
+[node name="Back" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Middle" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Front" type="Node2D" parent="."]
+unique_name_in_owner = true

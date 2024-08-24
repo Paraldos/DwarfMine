@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cw8xp5dc8l8u6"]
 
-[ext_resource type="Texture2D" uid="uid://dqohwusyt5qmk" path="res://world/danger_zone/acid.tres" id="1_8e3ta"]
 [ext_resource type="Script" path="res://world/danger_zone/danger_zone.gd" id="1_le1ct"]
+[ext_resource type="Texture2D" uid="uid://bhni7t66wxkhi" path="res://world/danger_zone/liquid.tres" id="1_oqpkl"]
 [ext_resource type="Texture2D" uid="uid://b75eu4mgfsrhj" path="res://assets/images/light.png" id="3_6lg36"]
 
 [sub_resource type="Animation" id="Animation_ffbjn"]
@@ -45,7 +45,7 @@ _data = {
 [node name="DangerZone" type="TextureRect"]
 offset_right = 16.0
 offset_bottom = 8.0
-texture = ExtResource("1_8e3ta")
+texture = ExtResource("1_oqpkl")
 stretch_mode = 1
 script = ExtResource("1_le1ct")
 

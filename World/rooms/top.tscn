@@ -11,7 +11,7 @@ layer_0/tile_data = PackedInt32Array(589824, 65536, 1, 524288, 65536, 1, 458752,
 [node name="PlayerPositionMarker" parent="." index="2"]
 position = Vector2(107, 72)
 
-[node name="Ladder" parent="Back" index="0" instance=ExtResource("2_xs0pa")]
+[node name="Ladder" parent="." index="3" instance=ExtResource("2_xs0pa")]
 offset_left = 64.0
 offset_top = -8.0
 offset_right = 72.0

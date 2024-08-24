@@ -27,10 +27,4 @@ layer_0/tile_data = PackedInt32Array(589824, 65536, 1, 524288, 65536, 1, 458752,
 [node name="PlayerPositionMarker" type="Marker2D" parent="."]
 position = Vector2(44, 72)
 
-[node name="Back" type="Node2D" parent="."]
-
-[node name="Middle" type="Node2D" parent="."]
-
-[node name="Front" type="Node2D" parent="."]
-
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

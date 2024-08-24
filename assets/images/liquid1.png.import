@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be3oupf6cr2ck"
-path="res://.godot/imported/Lava-Sheet.png-b0f2d202ee72160af3c38dd76b3e94f2.ctex"
+uid="uid://qy48peefbcq8"
+path="res://.godot/imported/liquid1.png-e0a5f690f064c1903e34aa77fd553c8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Lava-Sheet.png"
-dest_files=["res://.godot/imported/Lava-Sheet.png-b0f2d202ee72160af3c38dd76b3e94f2.ctex"]
+source_file="res://assets/images/liquid1.png"
+dest_files=["res://.godot/imported/liquid1.png-e0a5f690f064c1903e34aa77fd553c8b.ctex"]
 
 [params]
 

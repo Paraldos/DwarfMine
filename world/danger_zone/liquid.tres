@@ -1,0 +1,17 @@
+[gd_resource type="AnimatedTexture" load_steps=5 format=3 uid="uid://bhni7t66wxkhi"]
+
+[ext_resource type="Texture2D" uid="uid://qy48peefbcq8" path="res://assets/images/liquid1.png" id="1_1tum8"]
+[ext_resource type="Texture2D" uid="uid://dsaan3sjknett" path="res://assets/images/liquid2.png" id="2_xdh60"]
+[ext_resource type="Texture2D" uid="uid://bsipgohoucpie" path="res://assets/images/liquid3.png" id="3_nh36q"]
+[ext_resource type="Texture2D" uid="uid://cb2gnpcgq65h1" path="res://assets/images/liquid4.png" id="4_25uqm"]
+
+[resource]
+frames = 4
+speed_scale = 5.0
+frame_0/texture = ExtResource("1_1tum8")
+frame_1/texture = ExtResource("2_xdh60")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_nh36q")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_25uqm")
+frame_3/duration = 1.0
