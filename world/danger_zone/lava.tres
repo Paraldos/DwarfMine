@@ -1,0 +1,17 @@
+[gd_resource type="AnimatedTexture" load_steps=5 format=3 uid="uid://cji8pksxq2bmx"]
+
+[ext_resource type="Texture2D" uid="uid://ch0djs5kp51ni" path="res://assets/images/Lava1.png" id="1_dmvx2"]
+[ext_resource type="Texture2D" uid="uid://d1cc51ye2xqb6" path="res://assets/images/Lava2.png" id="2_rtdyv"]
+[ext_resource type="Texture2D" uid="uid://b72q5xjlxn6fd" path="res://assets/images/Lava3.png" id="3_fiomc"]
+[ext_resource type="Texture2D" uid="uid://ytf5uc6goy3" path="res://assets/images/Lava4.png" id="4_74im6"]
+
+[resource]
+frames = 4
+speed_scale = 5.0
+frame_0/texture = ExtResource("1_dmvx2")
+frame_1/texture = ExtResource("2_rtdyv")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_fiomc")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_74im6")
+frame_3/duration = 1.0

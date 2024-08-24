@@ -1,0 +1,17 @@
+[gd_resource type="AnimatedTexture" load_steps=5 format=3 uid="uid://dqohwusyt5qmk"]
+
+[ext_resource type="Texture2D" uid="uid://dpauey7lpsffd" path="res://assets/images/Acid1.png" id="1_6lp0p"]
+[ext_resource type="Texture2D" uid="uid://bje33s2tamich" path="res://assets/images/Acid2.png" id="2_7e06p"]
+[ext_resource type="Texture2D" uid="uid://cw80wx616i6yr" path="res://assets/images/Acid3.png" id="3_7otcj"]
+[ext_resource type="Texture2D" uid="uid://byj4g8lmt7h00" path="res://assets/images/Acid4.png" id="4_1bsqn"]
+
+[resource]
+frames = 4
+speed_scale = 5.0
+frame_0/texture = ExtResource("1_6lp0p")
+frame_1/texture = ExtResource("2_7e06p")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_7otcj")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_1bsqn")
+frame_3/duration = 1.0

@@ -1,39 +1,39 @@
 [gd_scene load_steps=7 format=3 uid="uid://cw8xp5dc8l8u6"]
 
-[ext_resource type="Texture2D" uid="uid://dicnjrrw8xue" path="res://assets/images/Lava.png" id="1_4ccwq"]
+[ext_resource type="Texture2D" uid="uid://dqohwusyt5qmk" path="res://world/danger_zone/acid.tres" id="1_8e3ta"]
 [ext_resource type="Script" path="res://world/danger_zone/danger_zone.gd" id="1_le1ct"]
 [ext_resource type="Texture2D" uid="uid://b75eu4mgfsrhj" path="res://assets/images/light.png" id="3_6lg36"]
-
-[sub_resource type="Animation" id="Animation_qxmtp"]
-resource_name = "loop"
-length = 5.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 0.588235)]
-}
 
 [sub_resource type="Animation" id="Animation_ffbjn"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
+tracks/0/path = NodePath(".:energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 0, 0, 1)]
+"values": [0.5]
+}
+
+[sub_resource type="Animation" id="Animation_qxmtp"]
+resource_name = "loop"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.5, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rlqrv"]
@@ -43,7 +43,9 @@ _data = {
 }
 
 [node name="DangerZone" type="TextureRect"]
-texture = ExtResource("1_4ccwq")
+offset_right = 16.0
+offset_bottom = 8.0
+texture = ExtResource("1_8e3ta")
 stretch_mode = 1
 script = ExtResource("1_le1ct")
 
@@ -54,7 +56,7 @@ position = Vector2(8, 4)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(8, 4)
-color = Color(1, 0, 0, 1)
+energy = 0.5
 texture = ExtResource("3_6lg36")
 texture_scale = 0.05
 
@@ -62,4 +64,3 @@ texture_scale = 0.05
 libraries = {
 "": SubResource("AnimationLibrary_rlqrv")
 }
-autoplay = "loop"
