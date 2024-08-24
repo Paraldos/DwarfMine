@@ -26,7 +26,7 @@ layer_0/tile_data = PackedInt32Array(589824, 65536, 1, 524288, 65536, 1, 458752,
 
 [node name="PlayerPositionMarker" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(32, 72)
+position = Vector2(44, 72)
 
 [node name="Back" type="Node2D" parent="."]
 unique_name_in_owner = true
