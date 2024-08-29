@@ -1,4 +1,4 @@
-extends TextureRect
+extends ColorRect
 
 var scatter_elements = [
 	preload("res://world/Scatter/mushroom.tscn"),
@@ -7,11 +7,11 @@ var scatter_elements = [
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
-	texture = null
 	rng.randomize()
 	for i in floor(size.x / 8):
 		if rng.randi_range(0, 100) > 65:
 			_spawn_random_element(i)
+	queue_free()
 
 func _spawn_random_element(i):
 	var package = scatter_elements[rng.randi_range(0, scatter_elements.size() -1)]
