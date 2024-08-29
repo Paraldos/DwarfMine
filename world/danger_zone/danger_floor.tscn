@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://world/danger_zone/danger_floor.gd" id="1_1xgfo"]
 
-[node name="Danger" type="ColorRect"]
+[node name="DangerFloor" type="ColorRect"]
 offset_right = 32.0
 offset_bottom = 8.0
 color = Color(1, 0, 0, 0.392157)

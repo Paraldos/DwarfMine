@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2gohxawehw66"]
+[gd_scene load_steps=3 format=3 uid="uid://b2gohxawehw66"]
 
 [ext_resource type="PackedScene" uid="uid://bl03yhkd368jy" path="res://world/room_template.tscn" id="1_q4trc"]
 [ext_resource type="PackedScene" uid="uid://d4anpobfhtyei" path="res://world/Scatter/ladder.tscn" id="2_5o7qm"]
-[ext_resource type="PackedScene" uid="uid://cw8xp5dc8l8u6" path="res://world/danger_zone/danger_zone.tscn" id="3_8gso8"]
 
 [node name="TopRight" instance=ExtResource("1_q4trc")]
 
@@ -17,11 +16,3 @@ offset_left = 64.0
 offset_top = -5.0
 offset_right = 72.0
 offset_bottom = 40.0
-
-[node name="DangerZone" parent="." index="4" instance=ExtResource("3_8gso8")]
-modulate = Color(1, 0.435294, 0, 1)
-z_index = -1
-offset_left = 32.0
-offset_top = 56.0
-offset_right = 120.0
-offset_bottom = 64.0

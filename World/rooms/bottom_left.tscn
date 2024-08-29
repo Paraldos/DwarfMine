@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdu0xo8wwid8u"]
+[gd_scene load_steps=4 format=3 uid="uid://cdu0xo8wwid8u"]
 
 [ext_resource type="PackedScene" uid="uid://bl03yhkd368jy" path="res://world/room_template.tscn" id="1_k74y5"]
 [ext_resource type="PackedScene" uid="uid://d4anpobfhtyei" path="res://world/Scatter/ladder.tscn" id="2_e05a3"]
-[ext_resource type="PackedScene" uid="uid://cw8xp5dc8l8u6" path="res://world/danger_zone/danger_zone.tscn" id="3_kfqie"]
 [ext_resource type="PackedScene" uid="uid://cxm4wwlfm6cwn" path="res://world/Scatter/scatter_floor.tscn" id="4_2xikt"]
 
 [node name="BottomLeft" instance=ExtResource("1_k74y5")]
@@ -19,19 +18,13 @@ offset_top = 29.0
 offset_right = 40.0
 offset_bottom = 72.0
 
-[node name="DangerZone" parent="." index="4" instance=ExtResource("3_kfqie")]
-offset_left = 96.0
-offset_top = 64.0
-offset_right = 120.0
-offset_bottom = 72.0
-
-[node name="ScatterFloor" parent="." index="5" instance=ExtResource("4_2xikt")]
+[node name="ScatterFloor" parent="." index="4" instance=ExtResource("4_2xikt")]
 offset_left = 48.0
 offset_top = 16.0
 offset_right = 88.0
 offset_bottom = 24.0
 
-[node name="ScatterFloor2" parent="." index="6" instance=ExtResource("4_2xikt")]
+[node name="ScatterFloor2" parent="." index="5" instance=ExtResource("4_2xikt")]
 offset_left = 96.0
 offset_top = 24.0
 offset_right = 112.0

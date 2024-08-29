@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d32xpc46ovca6"]
+[gd_scene load_steps=3 format=3 uid="uid://d32xpc46ovca6"]
 
 [ext_resource type="PackedScene" uid="uid://bl03yhkd368jy" path="res://world/room_template.tscn" id="1_514oj"]
-[ext_resource type="PackedScene" uid="uid://cw8xp5dc8l8u6" path="res://world/danger_zone/danger_zone.tscn" id="2_ke83g"]
 [ext_resource type="PackedScene" uid="uid://cxm4wwlfm6cwn" path="res://world/Scatter/scatter_floor.tscn" id="3_qvs1n"]
 
 [node name="Right" instance=ExtResource("1_514oj")]
@@ -12,13 +11,7 @@ layer_0/tile_data = PackedInt32Array(589824, 65536, 1, 524288, 65536, 1, 458752,
 [node name="PlayerPositionMarker" parent="." index="2"]
 position = Vector2(24, 56)
 
-[node name="DangerZone" parent="." index="3" instance=ExtResource("2_ke83g")]
-offset_left = 48.0
-offset_top = 64.0
-offset_right = 104.0
-offset_bottom = 72.0
-
-[node name="ScatterFloor" parent="." index="4" instance=ExtResource("3_qvs1n")]
+[node name="ScatterFloor" parent="." index="3" instance=ExtResource("3_qvs1n")]
 offset_left = 12.0
 offset_top = 48.0
 offset_right = 36.0
